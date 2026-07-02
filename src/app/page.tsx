@@ -1,39 +1,60 @@
 import Hero from '../components/Hero'
-import Services from '../components/Services'
-import ContactForm from '../components/ContactForm'
+import WhyChoose from '../components/WhyChoose'
+import ServicesOverview from '../components/ServicesOverview'
+import Process from '../components/Process'
+import ServiceAreas from '../components/ServiceAreas'
+import Resources from '../components/Resources'
+import FAQ from '../components/FAQ'
+import RequestCTA from '../components/RequestCTA'
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <section className="container py-12">
-        <Services />
-      </section>
 
-      <section className="bg-mohs-light py-12">
-        <div className="container">
-          <h2 className="text-2xl font-semibold text-mohs-navy mb-4">Why choose Mohs Mobile Pros</h2>
-          <p className="text-slate-700 mb-6">We provide expert Mohs micrographic surgery delivered with a focus on patient safety, dignity, and efficiency — right at your site.</p>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="p-6 bg-white rounded shadow">
-              <h3 className="font-semibold text-mohs-navy mb-2">Experienced Team</h3>
-              <p className="text-slate-600">Board-certified surgeons and trained staff with years of Mohs experience.</p>
-            </div>
-            <div className="p-6 bg-white rounded shadow">
-              <h3 className="font-semibold text-mohs-navy mb-2">Patient-Focused</h3>
-              <p className="text-slate-600">Comfort and communication prioritized during every step of care.</p>
-            </div>
-            <div className="p-6 bg-white rounded shadow">
-              <h3 className="font-semibold text-mohs-navy mb-2">Streamlined Logistics</h3>
-              <p className="text-slate-600">Coordinated scheduling and efficient onsite procedures to minimize disruption.</p>
-            </div>
+      <main>
+        <section className="py-12">
+          <div className="container">
+            <WhyChoose />
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="container py-12">
-        <ContactForm />
-      </section>
+        <section className="py-12 bg-white">
+          <div className="container">
+            <ServicesOverview />
+          </div>
+        </section>
+
+        <section className="py-12 section-gray">
+          <div className="container">
+            <Process />
+          </div>
+        </section>
+
+        <section className="py-12 bg-white">
+          <div className="container">
+            <ServiceAreas />
+          </div>
+        </section>
+
+        <section className="py-12 section-gray">
+          <div className="container">
+            <Resources />
+          </div>
+        </section>
+
+        <section className="py-12 bg-white">
+          <div className="container">
+            <FAQ />
+          </div>
+        </section>
+
+        <section className="py-16 bg-brand-navy text-white">
+          <div className="container">
+            <RequestCTA />
+          </div>
+        </section>
+      </main>
     </>
   )
 }

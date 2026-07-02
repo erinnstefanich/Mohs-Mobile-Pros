@@ -6,19 +6,19 @@ export default function Footer(){
       <div className="container grid md:grid-cols-3 gap-6">
         <div>
           <img src="/logo.svg" alt="Mohs Mobile Pros" className="h-10 mb-4" />
-          <p className="text-sm text-brand-gray">Mobile Mohs surgery brought to your facility — compassionate and expert skin cancer care.</p>
+          <p className="text-sm text-brand-gray">Mobile Mohs histology services and temporary histotechnician coverage across the Pacific Northwest.</p>
         </div>
 
         <div>
           <h4 className="font-semibold">Contact</h4>
-          <p className="text-sm">Phone: (555) 555-0123</p>
-          <p className="text-sm">Email: hello@mohsmobilepros.com</p>
+          <p className="text-sm">Phone: <a href="tel:3606061030" className="underline">360‑606‑1030</a></p>
+          <p className="text-sm">Email: <a href="mailto:info@mohsmobilepros.com" className="underline">info@mohsmobilepros.com</a></p>
+          <p className="text-sm">Scheduling: <a href="mailto:schedule@mohsmobilepros.com" className="underline">schedule@mohsmobilepros.com</a></p>
         </div>
 
         <div>
-          <h4 className="font-semibold">Legal</h4>
-          <Link href="/privacy" className="text-sm hover:underline">Privacy Policy</Link>
-          <Link href="/terms" className="text-sm hover:underline">Terms</Link>
+          <h4 className="font-semibold">Service Area</h4>
+          <p className="text-sm">Washington • Oregon • Idaho</p>
         </div>
       </div>
 
