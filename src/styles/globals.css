@@ -10,6 +10,7 @@
   --color-orange: #F47A20;
   --color-white: #FFFFFF;
   --color-light-gray: #F3F4F6;
+  --card-radius: 14px;
 }
 
 html, body, #__next {
@@ -36,17 +37,40 @@ a { color: var(--color-navy); }
 
 /* Utility classes to match brochure */
 .btn-primary {
-  @apply inline-flex items-center justify-center px-5 py-2 bg-[var(--color-orange)] text-white rounded-md font-semibold;
+  @apply inline-flex items-center justify-center px-6 py-3 bg-[var(--color-orange)] text-white rounded-md font-semibold shadow-md;
+  border-radius: var(--card-radius);
+}
+
+.btn-primary:focus {
+  outline: 3px solid rgba(244,122,32,0.18);
 }
 
 .btn-outline {
-  @apply inline-flex items-center justify-center px-5 py-2 border border-[var(--color-navy)] text-[var(--color-navy)] rounded-md font-semibold;
+  @apply inline-flex items-center justify-center px-6 py-3 border border-[var(--color-navy)] text-[var(--color-navy)] rounded-md font-semibold bg-white;
+  border-radius: var(--card-radius);
 }
 
+.btn-outline:focus {
+  outline: 3px solid rgba(11,46,89,0.12);
+}
+
+/* Card */
 .card {
   @apply p-6 bg-white rounded-lg shadow-sm border;
+  border-radius: var(--card-radius);
 }
 
-.section-gray {
-  background-color: var(--color-light-gray);
+.card-strong {
+  @apply p-6 bg-white rounded-xl shadow-lg border;
+  border-radius: calc(var(--card-radius) + 4px);
 }
+
+/* Section variants */
+.section-gray { background-color: var(--color-light-gray); }
+
+/* Fine tuned spacing for brochure look */
+h1 { letter-spacing: -0.02em; }
+h2 { letter-spacing: -0.01em; }
+
+/* subtle elevated card */
+.card-shadow { box-shadow: 0 10px 30px rgba(11,46,89,0.06); }

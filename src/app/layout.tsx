@@ -1,14 +1,9 @@
-import './globals.css'
-import { ReactNode } from 'react'
-import NavBar from '../components/NavBar'
-import Footer from '../components/Footer'
-
 export const metadata = {
   title: 'Mohs Mobile Pros',
-  description: 'Professional mobile Mohs surgery services — compassionate, convenient, and specialized skin cancer care. We bring expert Mohs surgery to your facility.',
+  description: 'Mohs Mobile Pros provides professional mobile Mohs histology services — onsite frozen sections, H&E staining, and laboratory support for dermatology practices across Washington, Oregon, and Idaho.',
   openGraph: {
     title: 'Mohs Mobile Pros',
-    description: 'Professional mobile Mohs surgery services — compassionate, convenient, and specialized skin cancer care.',
+    description: 'Onsite Mohs histology services: frozen sections, H&E staining, and laboratory workflow support across the Pacific Northwest.',
     url: 'https://mohsmobilepros.com',
     siteName: 'Mohs Mobile Pros'
   },
@@ -17,6 +12,11 @@ export const metadata = {
     follow: true
   }
 }
+
+import './globals.css'
+import { ReactNode } from 'react'
+import NavBar from '../components/NavBar'
+import Footer from '../components/Footer'
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
