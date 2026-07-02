@@ -1,10 +1,10 @@
 export default function ContactForm(){
   return (
     <section id="contact" className="max-w-3xl mx-auto">
-      <h2 className="text-2xl font-semibold text-mohs-navy mb-4">Contact Us</h2>
+      <h2 className="text-2xl font-semibold text-brand-navy mb-4">Contact Us</h2>
       <p className="text-slate-700 mb-6">Tell us about your facility needs and we'll respond promptly to discuss how we can help.</p>
 
-      <form className="grid gap-4">
+      <form className="grid gap-4" aria-label="Contact form">
         <div>
           <label className="block text-sm font-medium text-slate-700">Name</label>
           <input className="mt-1 block w-full border rounded px-3 py-2" type="text" name="name" aria-label="Name" />
@@ -19,7 +19,7 @@ export default function ContactForm(){
         </div>
 
         <div>
-          <button type="submit" className="bg-mohs-navy text-white px-6 py-2 rounded">Send Message</button>
+          <button type="submit" className="bg-brand-navy text-white px-6 py-2 rounded">Send Message</button>
         </div>
       </form>
     </section>

@@ -8,14 +8,16 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        mohs: {
-          navy: '#002A4E',
-          orange: '#FF6A00',
-          light: '#F8FAFF'
+        brand: {
+          navy: '#0B2E59',
+          orange: '#F47A20',
+          light: '#FFFFFF',
+          gray: '#F3F4F6'
         }
       },
       fontFamily: {
-        sans: ['Inter', 'ui-sans-serif', 'system-ui']
+        sans: ['Inter', 'ui-sans-serif', 'system-ui'],
+        heading: ['"Plus Jakarta Sans"', 'Inter', 'ui-sans-serif']
       }
     }
   },
