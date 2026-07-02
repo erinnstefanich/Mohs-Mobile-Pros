@@ -1,0 +1,27 @@
+/* Global styles for Mohs Mobile Pros */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+  --color-navy: #002A4E;
+  --color-orange: #FF6A00;
+  --color-white: #FFFFFF;
+  --color-muted: #6B7280;
+}
+
+html, body, #__next {
+  height: 100%;
+}
+
+body {
+  @apply bg-white text-slate-800 font-sans;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a { @apply text-mohs-navy hover:underline }
+
+.container {
+  @apply max-w-6xl mx-auto px-6;
+}
