@@ -1,19 +1,20 @@
 export const metadata = {
-  title: 'Request Service — Mohs Mobile Pros',
-  description: 'Request scheduling or service information from Mohs Mobile Pros. Provide basic case and facility details and our scheduling team will respond promptly.'
+  title: 'Schedule Service — Mohs Mobile Pros',
+  description: 'Request scheduling for Mohs Mobile Pros services. Provide practice details and requested services and our scheduling team will respond.'
 }
 
-import Section from '../components/Section'
+import Section from '../../components/Section'
+import ScheduleForm from '../../components/ScheduleForm'
 
 export default function RequestService(){
   return (
     <main>
       <Section>
         <div className="max-w-3xl">
-          <h1 className="text-3xl font-semibold text-brand-navy mb-4">Request Service</h1>
-          <p className="text-slate-700 mb-6">To request onsite Mohs histology, temporary coverage, or workflow consulting, email our scheduling team at <a href="mailto:schedule@mohsmobilepros.com" className="underline">schedule@mohsmobilepros.com</a> or call <a href="tel:3606061030" className="underline">360‑606‑1030</a>.</p>
+          <h1 className="text-3xl font-semibold text-brand-navy mb-4">Schedule Service</h1>
+          <p className="text-slate-700 mb-6">Complete the request form below to contact our scheduling team. Submissions are sent to schedule@mohsmobilepros.com. If you prefer, email schedule@mohsmobilepros.com directly.</p>
 
-          <p className="text-slate-700 mb-4">Please include proposed dates, facility name and location, expected case volume, and a brief description of the services requested. A scheduler will confirm availability and provide next steps.</p>
+          <ScheduleForm />
         </div>
       </Section>
     </main>

@@ -1,9 +1,9 @@
+import Section from '../components/Section'
+
 export const metadata = {
   title: 'Contact — Mohs Mobile Pros',
   description: 'Contact Mohs Mobile Pros for scheduling, general inquiries, and operational support. Phone and email contact details for our team.'
 }
-
-import Section from '../components/Section'
 
 export default function Contact(){
   return (
@@ -30,8 +30,8 @@ export default function Contact(){
             </div>
 
             <div>
-              <dt className="font-semibold">Location</dt>
-              <dd>Vancouver, Washington</dd>
+              <dt className="font-semibold">Serving</dt>
+              <dd>Washington • Oregon • Idaho</dd>
             </div>
           </dl>
         </div>

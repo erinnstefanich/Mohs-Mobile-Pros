@@ -28,6 +28,14 @@ export default function Footer(){
             <li><Link href="/contact">Contact</Link></li>
             <li><Link href="/privacy">Privacy Policy</Link></li>
           </ul>
+
+          <div className="mt-4">
+            <a href="#" aria-label="Mohs Mobile Pros LinkedIn" className="inline-flex items-center justify-center h-8 w-8 rounded-full bg-white/10">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.24 8H4.76V24H.24V8zM7.5 8H12v2.16h.07c.63-1.2 2.17-2.46 4.46-2.46 4.77 0 5.66 3.14 5.66 7.22V24h-4.5v-6.32c0-1.51-.03-3.45-2.1-3.45-2.11 0-2.44 1.64-2.44 3.34V24H7.5V8z" fill="#FFFFFF"/>
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
 
