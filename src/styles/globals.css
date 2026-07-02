@@ -37,22 +37,24 @@ a { color: var(--color-navy); }
 
 /* Utility classes to match brochure */
 .btn-primary {
-  @apply inline-flex items-center justify-center px-6 py-3 bg-[var(--color-orange)] text-white rounded-md font-semibold shadow-md;
+  @apply inline-flex items-center justify-center px-6 py-3 bg-[var(--color-orange)] text-white rounded-md font-semibold shadow-md transition-all duration-150 ease-in-out;
   border-radius: var(--card-radius);
 }
+
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(11,46,89,0.12); }
+.btn-primary:active { transform: translateY(0); }
 
 .btn-primary:focus {
   outline: 3px solid rgba(244,122,32,0.18);
 }
 
 .btn-outline {
-  @apply inline-flex items-center justify-center px-6 py-3 border border-[var(--color-navy)] text-[var(--color-navy)] rounded-md font-semibold bg-white;
+  @apply inline-flex items-center justify-center px-6 py-3 border border-[var(--color-navy)] text-[var(--color-navy)] rounded-md font-semibold bg-white transition-colors duration-150 ease-in-out;
   border-radius: var(--card-radius);
 }
 
-.btn-outline:focus {
-  outline: 3px solid rgba(11,46,89,0.12);
-}
+.btn-outline:hover { background-color: rgba(11,46,89,0.04); }
+.btn-outline:focus { outline: 3px solid rgba(11,46,89,0.12); }
 
 /* Card */
 .card {
@@ -74,3 +76,6 @@ h2 { letter-spacing: -0.01em; }
 
 /* subtle elevated card */
 .card-shadow { box-shadow: 0 10px 30px rgba(11,46,89,0.06); }
+
+/* Accessibility: visible focus for links */
+a:focus { outline: 3px solid rgba(11,46,89,0.12); }
