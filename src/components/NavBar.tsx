@@ -1,68 +1,55 @@
 'use client'
 
 import Link from 'next/link'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
-export default function NavBar(){
+const NAV_LINKS = [
+  { href: '/', label: 'Home' },
+  { href: '/services', label: 'Services' },
+  { href: '/practice-managers', label: 'Practice Managers' },
+  { href: '/resources', label: 'Resources' },
+  { href: '/about', label: 'About' },
+  { href: '/faq', label: 'FAQ' },
+  { href: '/contact', label: 'Contact' },
+  { href: '/request-service', label: 'Request Service' }
+]
+
+export default function NavBar() {
   const [open, setOpen] = useState(false)
 
-  // lock body scroll when mobile menu open
-  useEffect(()=>{
-    if(open) document.body.style.overflow = 'hidden'
-    else document.body.style.overflow = ''
-  },[open])
-
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b" role="banner">
-      <div className="container flex items-center justify-between py-4">
-        <div className="flex items-center gap-4">
-          <Link href="/" aria-label="Mohs Mobile Pros home">
-            <img src="/logo.svg" alt="Mohs Mobile Pros" className="h-14 w-auto" />
-          </Link>
-        </div>
+    <header className="fixed inset-x-0 top-0 z-40 bg-white/95 backdrop-blur-sm border-b">
+      <div className="max-w-6xl mx-auto px-6">
+        <nav className="flex items-center justify-between h-16">
+          <div className="flex items-center gap-4">
+            <Link href="/" className="text-lg font-semibold text-[var(--color-navy)]">Mohs Mobile Pros</Link>
+            <span className="hidden md:inline text-sm text-slate-500">360-606-1030</span>
+          </div>
 
-        <nav className="hidden md:flex items-center gap-8" aria-label="Primary navigation">
-          <Link href="/" className="text-slate-700 hover:text-[var(--color-navy)] focus:outline-none focus:ring-2 focus:ring-[var(--color-orange)] rounded">Home</Link>
-          <Link href="/services" className="text-slate-700 hover:text-[var(--color-navy)] focus:outline-none focus:ring-2 focus:ring-[var(--color-orange)] rounded">Services</Link>
-          <Link href="/request-service" className="text-slate-700 hover:text-[var(--color-navy)] focus:outline-none focus:ring-2 focus:ring-[var(--color-orange)] rounded">Schedule Service</Link>
-          <Link href="/about" className="text-slate-700 hover:text-[var(--color-navy)] focus:outline-none focus:ring-2 focus:ring-[var(--color-orange)] rounded">About</Link>
-          <Link href="/faq" className="text-slate-700 hover:text-[var(--color-navy)] focus:outline-none focus:ring-2 focus:ring-[var(--color-orange)] rounded">FAQ</Link>
-          <Link href="/contact" className="text-slate-700 hover:text-[var(--color-navy)] focus:outline-none focus:ring-2 focus:ring-[var(--color-orange)] rounded">Contact</Link>
+          <div className="hidden md:flex items-center gap-6">
+            {NAV_LINKS.slice(1, 7).map((link) => (
+              <Link key={link.href} href={link.href} className="text-sm text-slate-700 hover:text-[var(--color-navy)]">{link.label}</Link>
+            ))}
+            <Link href="/request-service" className="inline-flex items-center px-4 py-2 bg-[var(--color-orange)] text-white rounded-md text-sm font-semibold">Request Service</Link>
+          </div>
+
+          <div className="md:hidden">
+            <button aria-label="Toggle navigation" onClick={() => setOpen(!open)} className="p-2 rounded-md inline-flex items-center justify-center text-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--color-navy)]">
+              <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={open ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'} />
+              </svg>
+            </button>
+          </div>
         </nav>
-
-        <div className="hidden md:flex items-center gap-4">
-          <Link href="/request-service" aria-label="Request Service">
-            <button className="btn-primary">REQUEST SERVICE</button>
-          </Link>
-        </div>
-
-        {/* Mobile menu button */}
-        <div className="md:hidden">
-          <button aria-label="Toggle menu" aria-expanded={open} onClick={() => setOpen(!open)} className="p-2 rounded-md inline-flex items-center justify-center text-[var(--color-navy)] focus:outline-none focus:ring-2 focus:ring-[var(--color-orange)]">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-              <path d={open ? 'M6 18L18 6M6 6l12 12' : 'M3 12h18M3 6h18M3 18h18'} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </button>
-        </div>
       </div>
 
-      {/* Mobile overlay menu */}
+      {/* Mobile panel */}
       {open && (
-        <div className="md:hidden">
-          <div className="fixed inset-0 z-40 bg-black/40" onClick={()=>setOpen(false)} aria-hidden />
-          <div className="fixed top-16 left-4 right-4 z-50 bg-white rounded-lg shadow-lg p-4">
-            <nav className="flex flex-col gap-3" aria-label="Mobile navigation">
-              <Link href="/" onClick={()=>setOpen(false)} className="py-2 px-3 rounded hover:bg-[var(--color-light-gray)]">Home</Link>
-              <Link href="/services" onClick={()=>setOpen(false)} className="py-2 px-3 rounded hover:bg-[var(--color-light-gray)]">Services</Link>
-              <Link href="/request-service" onClick={()=>setOpen(false)} className="py-2 px-3 rounded hover:bg-[var(--color-light-gray)]">Schedule Service</Link>
-              <Link href="/about" onClick={()=>setOpen(false)} className="py-2 px-3 rounded hover:bg-[var(--color-light-gray)]">About</Link>
-              <Link href="/faq" onClick={()=>setOpen(false)} className="py-2 px-3 rounded hover:bg-[var(--color-light-gray)]">FAQ</Link>
-              <Link href="/contact" onClick={()=>setOpen(false)} className="py-2 px-3 rounded hover:bg-[var(--color-light-gray)]">Contact</Link>
-
-              <div className="pt-3 border-t mt-2">
-                <Link href="/request-service" onClick={()=>setOpen(false)} className="block btn-primary text-center">REQUEST SERVICE</Link>
-              </div>
-            </nav>
+        <div className="md:hidden bg-white border-t">
+          <div className="px-4 pt-4 pb-6 space-y-3">
+            {NAV_LINKS.map((link) => (
+              <Link key={link.href} href={link.href} onClick={() => setOpen(false)} className="block text-base text-slate-800 py-2">{link.label}</Link>
+            ))}
           </div>
         </div>
       )}

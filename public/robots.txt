@@ -1,3 +1,2 @@
 User-agent: *
-Allow: /
-Sitemap: https://mohsmobilepros.com/sitemap.xml
+Disallow:
