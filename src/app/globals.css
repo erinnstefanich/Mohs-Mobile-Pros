@@ -1,0 +1,81 @@
+/* Global styles for Mohs Mobile Pros (app-level copy to satisfy layout import) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+  --color-navy: #0B2E59;
+  --color-orange: #F47A20;
+  --color-white: #FFFFFF;
+  --color-light-gray: #F3F4F6;
+  --card-radius: 14px;
+}
+
+html, body, #__next {
+  height: 100%;
+}
+
+body {
+  @apply bg-white text-slate-800 font-sans;
+  font-family: Inter, ui-sans-serif, system-ui;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Headings use Plus Jakarta Sans */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Plus Jakarta Sans', Inter, ui-sans-serif;
+}
+
+a { color: var(--color-navy); }
+
+.container {
+  @apply max-w-6xl mx-auto px-6;
+}
+
+/* Utility classes to match brochure */
+.btn-primary {
+  @apply inline-flex items-center justify-center px-6 py-3 bg-[var(--color-orange)] text-white rounded-md font-semibold shadow-md transition-all duration-150 ease-in-out;
+  border-radius: var(--card-radius);
+}
+
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(11,46,89,0.12); }
+.btn-primary:active { transform: translateY(0); }
+
+.btn-primary:focus {
+  outline: 3px solid rgba(244,122,32,0.18);
+}
+
+.btn-outline {
+  @apply inline-flex items-center justify-center px-6 py-3 border border-[var(--color-navy)] text-[var(--color-navy)] rounded-md font-semibold bg-white transition-colors duration-150 ease-in-out;
+  border-radius: var(--card-radius);
+}
+
+.btn-outline:hover { background-color: rgba(11,46,89,0.04); }
+.btn-outline:focus { outline: 3px solid rgba(11,46,89,0.12); }
+
+/* Card */
+.card {
+  @apply p-6 bg-white rounded-lg shadow-sm border;
+  border-radius: var(--card-radius);
+}
+
+.card-strong {
+  @apply p-6 bg-white rounded-xl shadow-lg border;
+  border-radius: calc(var(--card-radius) + 4px);
+}
+
+/* Section variants */
+.section-gray { background-color: var(--color-light-gray); }
+
+/* Fine tuned spacing for brochure look */
+h1 { letter-spacing: -0.02em; }
+h2 { letter-spacing: -0.01em; }
+
+/* subtle elevated card */
+.card-shadow { box-shadow: 0 10px 30px rgba(11,46,89,0.06); }
+
+/* Accessibility: visible focus for links */
+a:focus { outline: 3px solid rgba(11,46,89,0.12); }

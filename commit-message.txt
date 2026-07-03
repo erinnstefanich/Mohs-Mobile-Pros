@@ -1,0 +1,3 @@
+Restore: ensure app imports a local globals.css for layout.tsx
+
+This commit adds src/app/globals.css (copy of src/styles/globals.css) so the import in src/app/layout.tsx ('./globals.css') resolves and the dev server can start.
