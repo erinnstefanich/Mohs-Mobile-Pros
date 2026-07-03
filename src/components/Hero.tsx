@@ -1,35 +1,81 @@
-import Image from 'next/image'
+'use client'
 
-export default function Hero(){
+import React from 'react'
+import Link from 'next/link'
+
+export default function Hero() {
   return (
-    <section className="relative overflow-hidden">
-      <div className="bg-white">
-        <div className="container grid md:grid-cols-2 gap-8 items-center py-20">
+    <section aria-label="Homepage hero" className="relative bg-white">
+      <div className="max-w-6xl mx-auto px-6 py-16 md:py-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          {/* Left: copy */}
           <div>
-            <img src="/logo.svg" alt="Mohs Mobile Pros" className="h-12 mb-6" />
-            <h1 className="text-4xl md:text-5xl font-extrabold text-brand-navy leading-tight">Onsite Mohs Histology & Frozen Section Services — Fast, Accurate, Compassionate</h1>
-            <p className="mt-6 text-slate-700 max-w-2xl">Mohs Mobile Pros delivers comprehensive mobile histology services to surgical centers and clinics across Washington, Oregon, and Idaho. Our experienced histotechnicians and streamlined workflows provide rapid frozen section preparation, H&E staining, special stains, and tissue embedding—supporting surgical teams with reliable, high-quality pathology-ready slides.</p>
+            <h1 className="text-4xl md:text-6xl font-extrabold leading-tight text-[var(--color-navy)]">
+              Mobile Mohs Histology, Delivered with Precision
+            </h1>
+            <p className="mt-6 text-lg md:text-xl text-slate-600 max-w-xl">
+              Onsite frozen sections, H&amp;E staining, and laboratory workflow support for dermatology practices across Washington, Oregon, and Idaho — a modern, reliable service tailored to your schedule.
+            </p>
 
-            <div className="mt-8 flex flex-wrap gap-4">
-              <a href="tel:3606061030" className="btn-primary">Call 360‑606‑1030</a>
-              <a href="mailto:schedule@mohsmobilepros.com" className="btn-outline">Request Scheduling</a>
+            <div className="mt-8 flex flex-col sm:flex-row sm:items-center sm:gap-4 gap-3">
+              <Link href="/request-service" className="inline-flex items-center justify-center px-6 py-3 bg-[var(--color-orange)] text-white rounded-md shadow-md hover:shadow-lg transition">
+                Request Service
+              </Link>
+
+              <Link href="/contact" className="inline-flex items-center justify-center px-6 py-3 border border-[var(--color-navy)] text-[var(--color-navy)] rounded-md bg-white">
+                Contact Us
+              </Link>
             </div>
 
-            <p className="mt-4 text-sm text-slate-600">Phone: 360‑606‑1030 • Email: <a href="mailto:info@mohsmobilepros.com" className="underline">info@mohsmobilepros.com</a></p>
+            <ul className="mt-8 text-sm text-slate-600 space-y-2">
+              <li><strong className="text-slate-800">Phone:</strong> <a href="tel:3606061030" className="text-[var(--color-navy)]">360-606-1030</a></li>
+              <li><strong className="text-slate-800">Serving:</strong> Washington · Oregon · Idaho</li>
+              <li className="sr-only md:not-sr-only">Focused, on-site laboratory-grade Mohs support.</li>
+            </ul>
           </div>
 
-          <div className="relative flex justify-center">
-            <div className="w-full max-w-md">
-              <img src="/hero-illustration.svg" alt="Mohs Mobile Pros onsite histology" className="w-full rounded-lg shadow-lg" />
+          {/* Right: decorative card with abstract lab illustration */}
+          <div className="flex items-center justify-center">
+            <div className="w-full max-w-md bg-white rounded-2xl shadow-lg border p-6">
+              <div className="flex items-center gap-4">
+                <div className="flex-shrink-0 w-20 h-20 rounded-xl bg-gradient-to-tr from-[var(--color-navy)] to-[var(--color-orange)] flex items-center justify-center text-white shadow-md">
+                  {/* Simple lab icon (microscope-like) */}
+                  <svg className="w-10 h-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                    <path d="M3 21h6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.9" />
+                    <path d="M11 17h2l3-6-4-3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.95" />
+                    <circle cx="17" cy="7" r="2" stroke="currentColor" strokeWidth="1.5" opacity="0.95" />
+                  </svg>
+                </div>
+
+                <div>
+                  <h3 className="text-lg font-semibold text-[var(--color-navy)]">Onsite Laboratory-Grade Support</h3>
+                  <p className="mt-1 text-sm text-slate-600">Rapid frozen sections and H&amp;E staining performed with precision and care.</p>
+                </div>
+              </div>
+
+              <div className="mt-6">
+                <dl className="grid grid-cols-2 gap-4 text-sm text-slate-600">
+                  <div>
+                    <dt className="font-medium text-slate-800">Turnaround</dt>
+                    <dd>Fast, same-day results</dd>
+                  </div>
+                  <div>
+                    <dt className="font-medium text-slate-800">Coverage</dt>
+                    <dd>WA · OR · ID</dd>
+                  </div>
+                </dl>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* subtle wave graphic */}
-      <svg className="absolute left-0 right-0 bottom-0 w-full" viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0,40 C240,120 480,0 720,40 C960,80 1200,20 1440,40 L1440,120 L0,120 Z" fill="#F3F4F6" opacity="0.9" />
-      </svg>
+      {/* Decorative wave divider */}
+      <div className="pointer-events-none -mt-2">
+        <svg viewBox="0 0 1440 80" width="100%" height="80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+          <path d="M0,32 C360,96 720,0 1440,48 L1440,80 L0,80 Z" fill="#F3F4F6" />
+        </svg>
+      </div>
     </section>
   )
 }
