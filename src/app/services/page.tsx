@@ -16,22 +16,22 @@ const histologyServices: ServiceNavItem[] = [
 
 const practiceSupport: ServiceNavItem[] = [
   { label: 'Complete Laboratory Setup & Takedown', href: '/services/laboratory-workflow-support', icon: 'lab-setup-takedown' },
-  { label: 'Equipment Support', href: '/services/laboratory-workflow-support', icon: 'equipment-support' },
-  { label: 'Temporary Mohs Histology Support', href: '/services/temporary-histotechnician-coverage', icon: 'temporary-histology-staffing' },
   { label: 'Full-Day, Half-Day, or As-Needed Coverage', href: '/request-service', icon: 'coverage-calendar' },
+  { label: 'Equipment Support', href: '/services/laboratory-workflow-support', icon: 'equipment-support' },
   { label: 'Workflow Integration', href: '/services/mobile-mohs-histology', icon: 'workflow-integration' },
-  { label: 'Laboratory Consulting', href: '/services/laboratory-workflow-support', icon: 'laboratory-consulting' }
+  { label: 'Laboratory Consulting', href: '/services/laboratory-workflow-support', icon: 'laboratory-consulting' },
+  { label: 'Temporary Mohs Histology Support', href: '/services/temporary-histotechnician-coverage', icon: 'temporary-histology-staffing' }
 ]
 
 const outsourceBenefits = [
   'Reduce laboratory coverage costs',
-  'Simplify laboratory coverage planning',
-  'Vacation and leave coverage',
-  'Scale with fluctuating patient volume',
-  'Access experienced Mohs technicians',
-  'Maintain uninterrupted laboratory workflow',
   'Improve scheduling flexibility',
-  'Support continuity of patient care'
+  'Access experienced Mohs technicians',
+  'Scale with fluctuating patient volume',
+  'Simplify laboratory coverage planning',
+  'Support continuity of patient care',
+  'Maintain uninterrupted laboratory workflow',
+  'Vacation and leave coverage'
 ]
 
 const choiceCards = [
@@ -47,7 +47,7 @@ const choiceCards = [
   },
   {
     title: 'Flexible Coverage',
-    text: 'Vacation coverage, laboratory coverage gaps, recurring clinic support, and same-day scheduling when available.',
+    text: 'Seamless Mohs histology support that integrates with your surgery schedule, providing dependable laboratory coverage for recurring clinic days, planned support, or temporary needs.',
     icon: 'flexible-coverage' as const
   },
   {
@@ -68,7 +68,7 @@ const workSteps = [
   },
   {
     title: 'On-Site Support',
-    text: 'An experienced Mohs technician arrives ready to integrate seamlessly into your workflow.'
+    text: 'Your Mohs technician provides scalable surgery-day support through complete laboratory setup, equipment integration, and flexible clinic-day support.'
   },
   {
     title: 'Patient Care Continues',
@@ -81,6 +81,7 @@ export const metadata = {
   description: 'Mobile Mohs histology services including cryosectioning, H&E staining, tissue embedding, and on-site laboratory support.'
 }
 
+// FINAL APPROVED SERVICES PAGE — DO NOT MODIFY WITHOUT EXPLICIT USER APPROVAL
 export default function ServicesPage() {
   return (
     <div className="overflow-hidden bg-white">
@@ -125,7 +126,7 @@ export default function ServicesPage() {
 
           <div className="relative min-h-[620px] overflow-hidden lg:min-h-[660px] lg:overflow-visible">
             <div className="absolute left-0 top-8 h-[320px] w-[72%] overflow-hidden rounded-lg border-8 border-white bg-brand-gray shadow-[0_24px_70px_rgba(11,35,69,0.16)] rotate-[-2deg]">
-              <Image src="/images/hero/leica-cm1860-technician.jpg" alt="Histotechnician working at a Leica CM1860 cryostat" fill sizes="(max-width: 1024px) 80vw, 48vw" className="object-cover" />
+              <Image src="/images/services-male-cryostat-technician.png" alt="Histotechnician working at a Leica CM1860 cryostat" fill sizes="(max-width: 1024px) 80vw, 48vw" className="object-cover" />
             </div>
             <div className="absolute right-2 top-56 h-[260px] w-[52%] overflow-hidden rounded-lg border-8 border-white bg-brand-gray shadow-[0_22px_65px_rgba(11,35,69,0.16)] rotate-[3deg]">
               <Image src="/images/services-slide-handling.png" alt="Frozen section slide preparation" fill sizes="(max-width: 1024px) 55vw, 32vw" className="object-cover" />
@@ -188,7 +189,7 @@ export default function ServicesPage() {
           <div>
             <p className="eyebrow text-orange-200">Schedule coverage</p>
             <h2 className="mt-3 text-4xl font-black leading-tight text-white sm:text-5xl">Ready to Schedule Mohs Histology Coverage?</h2>
-            <p className="mt-5 max-w-3xl text-lg leading-8 text-white/82">Whether you need temporary coverage, recurring support, or a complete mobile laboratory solution, Mohs Mobile Pros is ready to help.</p>
+            <p className="mt-5 max-w-3xl text-lg leading-8 text-white/82">Whether you need complete laboratory setup, surgery-day coverage, workflow integration, equipment support, or experienced Mohs technicians, Mohs Mobile Pros is ready to support your practice.</p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
             <Link href="/request-service" className="btn-primary">Request Service</Link>
