@@ -4,32 +4,19 @@ import { BrochureBand, InteriorHero } from '../../components/site/InteriorPage'
 import type { BrochureIconName } from '../../lib/brochure-icons'
 
 const primaryAreas = [
-  'Vancouver, Washington',
-  'Portland, Oregon',
-  'Clark County',
-  'Portland metropolitan area',
-  'Greater Pacific Northwest by request'
+  'Portland Metropolitan Area',
+  'Greater Pacific Northwest by Request'
 ]
 
 const regionalCards = [
   {
-    title: 'Vancouver, Washington',
-    text: 'Primary mobile Mohs histology coverage for dermatology and Mohs surgery practices in Vancouver.',
-    icon: 'regional-support' as const
-  },
-  {
-    title: 'Portland, Oregon',
-    text: 'On-site histology support for practices throughout Portland and nearby metropolitan communities.',
-    icon: 'regional-support' as const
-  },
-  {
-    title: 'Clark County',
-    text: 'Regional support for practices coordinating clinic-day coverage, temporary laboratory support, or workflow assistance.',
-    icon: 'regional-support' as const
-  },
-  {
     title: 'Portland Metropolitan Area',
-    text: 'Coverage coordinated around location, schedule, travel needs, and the level of histology support required.',
+    text: 'Routine scheduling for complete mobile Mohs histology support throughout Portland and surrounding metropolitan communities.',
+    icon: 'regional-support' as const
+  },
+  {
+    title: 'Greater Pacific Northwest by Request',
+    text: 'The same comprehensive Mohs histology services are available throughout the Pacific Northwest. Service outside our primary region is coordinated through advanced scheduling, travel planning, and clinic logistics.',
     icon: 'regional-support' as const
   }
 ]
@@ -54,16 +41,17 @@ const regionalReasons = [
 
 export const metadata = {
   title: 'Service Areas',
-  description: 'Mohs Mobile Pros provides mobile Mohs histology support in Vancouver, Portland, Clark County, and the greater Pacific Northwest by request.'
+  description: 'Mohs Mobile Pros provides mobile Mohs histology support in the Portland Metropolitan Area and the Greater Pacific Northwest by Request.'
 }
 
+// FINAL APPROVED SERVICE AREAS PAGE — DO NOT MODIFY WITHOUT EXPLICIT USER APPROVAL
 export default function ServiceAreasPage() {
   return (
     <div className="overflow-hidden bg-white">
       <InteriorHero
         eyebrow="Service Areas"
         title="Mobile Mohs histology coverage across the Pacific Northwest"
-        text="Mohs Mobile Pros supports dermatology and Mohs surgery practices throughout the Vancouver-Portland metropolitan area and greater Pacific Northwest by request."
+        text="Mohs Mobile Pros supports dermatology and Mohs surgery practices throughout the Portland Metropolitan Area and the Greater Pacific Northwest by Request."
         primaryLabel="Request Service"
         primaryHref="/request-service"
         secondaryLabel="View Services"
@@ -76,7 +64,7 @@ export default function ServiceAreasPage() {
             <p className="eyebrow">Coverage Overview</p>
             <h2 className="mt-3 text-3xl font-black leading-tight text-brand-navy sm:text-4xl">Regional support for practice teams that need reliable clinic-day coverage</h2>
             <p className="mt-5 max-w-2xl leading-8 text-slate-600">
-              Coverage is coordinated around your requested date, clinic location, case volume, equipment availability, and the type of Mohs histology support your practice needs.
+              Coverage is coordinated around your requested date, clinic location, case volume, equipment availability, and the type of Mohs histology laboratory support your practice requires.
             </p>
           </div>
 
@@ -100,9 +88,9 @@ export default function ServiceAreasPage() {
         <div>
           <div className="max-w-3xl">
             <p className="eyebrow">Primary Service Region</p>
-            <h2 className="mt-3 text-3xl font-black leading-tight text-brand-navy sm:text-4xl">Focused coverage for Vancouver, Portland, and surrounding practice communities</h2>
+            <h2 className="mt-3 text-3xl font-black leading-tight text-brand-navy sm:text-4xl">Focused coverage for the Portland Metropolitan Area and the Greater Pacific Northwest by Request</h2>
           </div>
-          <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+          <div className="mt-10 grid gap-5 md:grid-cols-2">
             {regionalCards.map((market) => (
               <LocationCard key={market.title} title={market.title} text={market.text} icon={market.icon} />
             ))}
@@ -116,7 +104,7 @@ export default function ServiceAreasPage() {
             <p className="eyebrow">By-Request Regional Coverage</p>
             <h2 className="mt-3 text-3xl font-black leading-tight text-brand-navy sm:text-4xl">Expanded Regional Coverage</h2>
             <p className="mt-5 leading-8 text-slate-600">
-              Practices outside the primary Vancouver-Portland region may request support based on scheduling, travel requirements, and service scope. Our scheduling team reviews each request clearly before confirming coverage.
+              Practices outside the Portland Metropolitan Area may request support throughout the Greater Pacific Northwest based on scheduling, travel requirements, and service scope. Our scheduling team reviews each request clearly before confirming coverage.
             </p>
           </div>
 
