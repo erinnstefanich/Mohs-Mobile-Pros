@@ -7,6 +7,7 @@ export const metadata = {
   description: 'Contact Mohs Mobile Pros for mobile Mohs histology support and on-site laboratory support.'
 }
 
+// FINAL APPROVED CONTACT PAGE — DO NOT MODIFY WITHOUT EXPLICIT USER APPROVAL
 export default function ContactPage() {
   return (
     <div className="overflow-hidden bg-white">
@@ -38,7 +39,7 @@ export default function ContactPage() {
                 </p>
               </div>
             </div>
-            <FeatureCard title="Pacific Northwest support" text="Service requests are reviewed for Vancouver, Portland, and surrounding Pacific Northwest practices based on availability." icon="map" />
+            <FeatureCard title="Pacific Northwest support" text="Service requests are reviewed for the Portland Metropolitan Area and the Greater Pacific Northwest by Request based on availability." icon="map" />
           </div>
           <ContactForm />
         </div>
