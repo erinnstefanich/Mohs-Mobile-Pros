@@ -5,6 +5,7 @@ export const metadata = {
   description: 'Learn about Mohs Mobile Pros and our mobile Mohs histology support for dermatology practices.'
 }
 
+// FINAL APPROVED ABOUT PAGE — DO NOT MODIFY WITHOUT EXPLICIT USER APPROVAL
 export default function AboutPage() {
   return (
     <div className="overflow-hidden bg-white">
