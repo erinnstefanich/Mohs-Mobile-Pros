@@ -1,125 +1,83 @@
 'use client'
 
 import { ReactNode, useState } from 'react'
-import BrochureIcon from './BrochureIcon'
-import { business } from '../lib/site'
 
 type FAQItem = {
   q: string
   a: ReactNode
 }
 
-const approvedFaqs: FAQItem[] = [
+const approvedFaqSections: { title: string; items: FAQItem[] }[] = [
   {
-    q: 'What areas do you serve?',
-    a: (
-      <div className="space-y-4">
-        <p>Mohs Mobile Pros proudly serves dermatology practices throughout:</p>
-        <BulletList items={['Vancouver-Portland metropolitan area', 'Greater Pacific Northwest (coverage available by request)']} />
-      </div>
-    )
+    title: 'Services and Workflow',
+    items: [
+      {
+        q: 'What services does Mohs Mobile Pros provide?',
+        a: 'Mohs Mobile Pros provides mobile Mohs histology services including tissue embedding and orientation, cryosectioning, frozen section preparation, H&E staining, special stains as requested, and technical laboratory support directly within your dermatology practice.'
+      },
+      {
+        q: 'Who interprets the slides?',
+        a: 'The Mohs surgeon interprets the stained slides and determines whether additional stages are required. Our role is to provide high-quality histologic preparation that supports accurate surgical decision-making.'
+      },
+      {
+        q: 'Do you bring your own equipment and supplies?',
+        a: 'Yes. We can provide a cryostat, staining equipment, laboratory supplies, and experienced Mohs technicians, or work with equipment and supplies already available in your practice. The service model is tailored to your laboratory needs.'
+      },
+      {
+        q: 'How quickly are slides prepared?',
+        a: 'Turnaround times depend on specimen complexity, case volume, and surgeon preferences. Our workflow is designed to provide prompt, efficient processing while maintaining high standards of tissue quality.'
+      },
+      {
+        q: 'Why is specimen handling so important?',
+        a: 'Every tissue specimen comes from an individual patient and is irreplaceable. Proper orientation, embedding, cryosectioning, and staining are essential to producing high-quality slides that surgeons can confidently interpret.'
+      },
+      {
+        q: 'How do you ensure tissue quality?',
+        a: 'Every specimen is treated as irreplaceable. Our process emphasizes careful orientation, precise embedding, meticulous cryosectioning, consistent H&E staining, standardized operating procedures, documented competency assessments, and ongoing quality oversight. High-quality slide preparation supports the surgeon’s ability to evaluate surgical margins with confidence.'
+      }
+    ]
   },
   {
-    q: 'What Mohs histology services do you provide?',
-    a: (
-      <div className="space-y-4">
-        <p>Mohs Mobile Pros provides experienced, on-site histology support designed to integrate seamlessly into your existing laboratory workflow.</p>
-        <div>
-          <h3 className="text-sm font-black uppercase tracking-[0.12em] text-brand-navy">Our services include:</h3>
-          <BulletList
-            items={[
-              'Tissue Embedding & Orientation',
-              'Cryosectioning / Frozen Sections',
-              'H&E Staining & Slide Preparation',
-              'Special Stains (as needed)',
-              'Laboratory Workflow Support',
-              'Temporary Mohs Histology Support'
-            ]}
-          />
-        </div>
-      </div>
-    )
+    title: 'Training and Compliance',
+    items: [
+      {
+        q: 'Are your technicians professionally trained?',
+        a: 'Yes. Mohs technicians complete a formal training program supported by standardized operating procedures, documented competency assessments, and an ongoing quality assurance plan. Training and oversight are provided by experienced ASCP-certified Histotechnicians (HT) and Histotechnologists (HTL).'
+      },
+      {
+        q: 'Do you work under our CLIA certification?',
+        a: 'When appropriate, services may be performed under the clinic’s existing CLIA certificate and laboratory policies. Specific regulatory and operational requirements are reviewed with each practice before services begin.'
+      },
+      {
+        q: 'What experience does Mohs Mobile Pros bring?',
+        a: 'Mohs Mobile Pros is locally owned and operated and backed by more than 20 years of clinical pathology laboratory experience, including histopathology techniques, Mohs workflows, quality systems, regulatory compliance, laboratory operations, and leadership.'
+      }
+    ]
   },
   {
-    q: 'What service options are available?',
-    a: (
-      <div className="grid gap-6 md:grid-cols-2">
-        <div className="rounded-lg border border-slate-200 bg-slate-50/70 p-5">
-          <h3 className="text-base font-black text-brand-navy">Complete Mobile Mohs Histology Laboratory</h3>
-          <p className="mt-3">Mohs Mobile Pros provides:</p>
-          <BulletList items={['Leica CM1860 Cryostat', 'Staining equipment', 'Laboratory supplies', 'Experienced Mohs technician']} />
-        </div>
-        <div className="rounded-lg border border-slate-200 bg-slate-50/70 p-5">
-          <h3 className="text-base font-black text-brand-navy">On-Site Mohs Technician Support</h3>
-          <p className="mt-3">Your practice provides:</p>
-          <BulletList items={['Cryostat', 'Staining equipment', 'Laboratory supplies']} />
-          <p className="mt-5">Mohs Mobile Pros provides:</p>
-          <BulletList items={['Experienced Mohs technician', 'Professional laboratory support', 'Workflow integration with your clinical team']} />
-        </div>
-      </div>
-    )
-  },
-  {
-    q: 'How do you ensure technician competency and quality?',
-    a: (
-      <div className="space-y-4">
-        <p>Every Mohs Mobile Pros technician:</p>
-        <BulletList
-          items={[
-            'Completes a formal Mohs histology training program',
-            'Demonstrates documented competency before independent practice',
-            'Completes annual competency assessments',
-            'Follows standardized operating procedures',
-            'Participates in ongoing quality monitoring'
-          ]}
-        />
-        <p>Senior Mohs histology leadership includes experienced ASCP-certified Histotechnicians (HT) and Histotechnologists (HTL) with extensive clinical and research histology experience.</p>
-      </div>
-    )
-  },
-  {
-    q: 'Can you provide temporary or recurring coverage?',
-    a: (
-      <div className="space-y-4">
-        <p>Yes.</p>
-        <div>
-          <h3 className="text-sm font-black uppercase tracking-[0.12em] text-brand-navy">Coverage includes:</h3>
-          <BulletList items={['Vacation coverage', 'Laboratory coverage gaps', 'Increased surgical volume', 'Temporary transitions', 'Recurring clinic support']} />
-        </div>
-        <p>Our goal is to maintain uninterrupted laboratory operations while supporting continuity of patient care.</p>
-      </div>
-    )
-  },
-  {
-    q: 'How do we request service?',
-    a: (
-      <div className="space-y-4">
-        <p>Complete the online <a href="/request-service" className="font-bold text-brand-navy transition hover:text-brand-orange">Request Service form</a> or contact our scheduling team directly at <a href={`mailto:${business.schedulingEmail}`} className="font-bold text-brand-navy transition hover:text-brand-orange">{business.schedulingEmail}</a>.</p>
-        <p>After submission, our team reviews your request, confirms availability, and coordinates service details with your practice.</p>
-      </div>
-    )
-  },
-  {
-    q: 'What information should we have ready?',
-    a: (
-      <div className="space-y-4">
-        <p>To help us schedule coverage efficiently, please provide:</p>
-        <BulletList
-          items={[
-            'Practice name',
-            'Practice location',
-            'Requested service date(s)',
-            'Estimated Mohs case volume',
-            'Requested services',
-            'Equipment availability',
-            'Workflow requirements',
-            'Practice-specific protocols or special instructions'
-          ]}
-        />
-      </div>
-    )
+    title: 'Coverage and Scheduling',
+    items: [
+      {
+        q: 'What areas do you serve?',
+        a: 'Mohs Mobile Pros serves the Portland Metropolitan Area and provides coverage throughout the Greater Pacific Northwest by request. Regional service is coordinated based on scheduling, travel planning, and clinic logistics.'
+      },
+      {
+        q: 'Can you provide temporary coverage?',
+        a: 'Yes. We can provide planned coverage for vacation, leave, temporary laboratory needs, recurring clinic days, and periods of increased surgical volume. Support is coordinated around the practice’s workflow and service requirements.'
+      },
+      {
+        q: 'Why choose Mohs Mobile Pros instead of hiring a full-time technician?',
+        a: 'Many Mohs practices perform surgery only one or two days each week. Mobile services provide experienced Mohs histology support when needed without the ongoing expense of maintaining a full-time employee.'
+      },
+      {
+        q: 'How do I get started?',
+        a: 'Contact Mohs Mobile Pros to discuss your practice’s workflow, scheduling needs, equipment, and operational requirements. You may also submit the online Request Service form to begin the conversation. We will develop a service plan tailored to your Mohs laboratory needs.'
+      }
+    ]
   }
 ]
+
+const approvedFaqs = approvedFaqSections.flatMap((section) => section.items)
 
 type FAQProps = {
   limit?: number
@@ -127,7 +85,7 @@ type FAQProps = {
 
 export default function FAQ({ limit }: FAQProps) {
   const items = typeof limit === 'number' ? approvedFaqs.slice(0, limit) : approvedFaqs
-  const [open, setOpen] = useState(0)
+  const [open, setOpen] = useState(-1)
 
   return (
     <section className="section-pad bg-white">
@@ -150,20 +108,5 @@ export default function FAQ({ limit }: FAQProps) {
         </div>
       </div>
     </section>
-  )
-}
-
-function BulletList({ items }: { items: string[] }) {
-  return (
-    <ul className="mt-3 grid gap-2">
-      {items.map((item) => (
-        <li key={item} className="flex gap-3">
-          <span className="relative mt-1.5 grid h-4 w-4 shrink-0 place-items-center">
-            <BrochureIcon name="check-outline" size="compact" className="absolute max-w-none" />
-          </span>
-          <span>{item}</span>
-        </li>
-      ))}
-    </ul>
   )
 }
