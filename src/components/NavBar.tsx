@@ -13,6 +13,7 @@ const headerLinks = [
   { href: '/service-areas', label: 'Service Areas' },
   { href: '/practice-managers', label: 'Practice Managers' },
   { href: '/about', label: 'About Us' },
+  { href: '/careers', label: 'Careers' },
   { href: '/faq', label: 'FAQ' },
   { href: '/contact', label: 'Contact' }
 ]
