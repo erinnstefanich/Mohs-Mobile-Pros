@@ -6,7 +6,7 @@ export const business = {
   schedulingEmail: 'schedule@mohsmobilepros.com',
   website: 'mohsmobilepros.com',
   url: 'https://mohsmobilepros.com',
-  region: 'Vancouver, Portland, and surrounding Pacific Northwest markets based on availability'
+  region: 'Portland Metropolitan Area and Greater Pacific Northwest by Request'
 }
 
 export const navLinks = [
@@ -104,7 +104,7 @@ export const faqs = [
   },
   {
     q: 'Where do you provide service?',
-    a: 'Mohs Mobile Pros focuses on Vancouver, Portland, and surrounding Pacific Northwest practices depending on scheduling, availability, and travel needs.'
+    a: 'Mohs Mobile Pros serves the Portland Metropolitan Area and the Greater Pacific Northwest by Request, depending on scheduling, availability, and travel needs.'
   },
   {
     q: 'Can we request recurring coverage?',
@@ -121,9 +121,8 @@ export const faqs = [
 ]
 
 export const areas = [
-  'Vancouver',
-  'Portland',
-  'Surrounding Pacific Northwest'
+  'Portland Metropolitan Area',
+  'Greater Pacific Northwest by Request'
 ]
 
 export function getService(slug: string) {

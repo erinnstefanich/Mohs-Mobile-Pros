@@ -36,56 +36,43 @@ export async function POST(req: Request) {
   const emailBody = formatRequestEmail(data)
   const confirmationBody = formatConfirmationEmail(data)
 
-  const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY
+  const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY?.trim()
 
-  if (SENDGRID_API_KEY) {
-    try {
-      const schedulingRes = await sendEmail(SENDGRID_API_KEY, {
-        to: DESTINATION_EMAIL,
-        replyTo: data.contactEmail,
-        replyToName: data.contactName || data.practiceName || 'Service Request',
-        subject: SUBJECT,
-        body: emailBody
-      })
-
-      const confirmationRes = await sendEmail(SENDGRID_API_KEY, {
-        to: data.contactEmail || '',
-        subject: 'Mohs Mobile Pros received your service request',
-        body: confirmationBody
-      })
-
-      if (!schedulingRes.ok || !confirmationRes.ok) {
-        const text = `${await schedulingRes.text()} ${await confirmationRes.text()}`
-        console.error('Request service email error:', text)
-        return NextResponse.json({ ok: false, message: 'Email delivery failed.' }, { status: 502 })
-      }
-
-      return NextResponse.json({ ok: true, deliveredTo: DESTINATION_EMAIL, confirmationPreparedFor: data.contactEmail })
-    } catch (err) {
-      console.error('Request service email exception:', err)
-      return NextResponse.json({ ok: false, message: 'Email delivery failed.' }, { status: 500 })
-    }
+  if (!SENDGRID_API_KEY) {
+    console.error('Request service email delivery is not configured: SENDGRID_API_KEY is missing.')
+    return NextResponse.json({ ok: false, message: 'Email delivery is not configured.' }, { status: 503 })
   }
 
-  // Email delivery is intentionally isolated here. Connect the production provider
-  // by setting SENDGRID_API_KEY or replacing this block with the approved mail service.
-  // The prepared payloads above include the scheduling email and submitter confirmation copy.
-  if (process.env.NODE_ENV === 'development') {
-    console.log('Prepared service request email:', {
+  try {
+    const schedulingRes = await sendEmail(SENDGRID_API_KEY, {
       to: DESTINATION_EMAIL,
-      confirmationTo: data.contactEmail,
+      replyTo: data.contactEmail,
+      replyToName: data.contactName || data.practiceName || 'Service Request',
       subject: SUBJECT,
-      body: emailBody,
-      confirmationBody
+      body: emailBody
     })
-  }
 
-  return NextResponse.json({
-    ok: true,
-    emailConfigured: false,
-    preparedFor: DESTINATION_EMAIL,
-    confirmationPreparedFor: data.contactEmail
-  })
+    if (!schedulingRes.ok) {
+      console.error('Request service scheduling email error:', await schedulingRes.text())
+      return NextResponse.json({ ok: false, message: 'Email delivery failed.' }, { status: 502 })
+    }
+
+    const confirmationRes = await sendEmail(SENDGRID_API_KEY, {
+      to: data.contactEmail || '',
+      subject: 'Mohs Mobile Pros received your service request',
+      body: confirmationBody
+    })
+
+    if (!confirmationRes.ok) {
+      console.error('Request service confirmation email error:', await confirmationRes.text())
+      return NextResponse.json({ ok: false, message: 'Email delivery failed.' }, { status: 502 })
+    }
+
+    return NextResponse.json({ ok: true, deliveredTo: DESTINATION_EMAIL, confirmationDeliveredTo: data.contactEmail })
+  } catch (err) {
+    console.error('Request service email exception:', err)
+    return NextResponse.json({ ok: false, message: 'Email delivery failed.' }, { status: 500 })
+  }
 }
 
 function sendEmail(

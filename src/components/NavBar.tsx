@@ -27,7 +27,7 @@ export default function NavBar() {
     <header className={isHome ? 'relative z-40 border-b border-slate-100 bg-white shadow-[0_8px_24px_rgba(11,35,69,0.05)]' : 'sticky top-0 z-40 border-b border-slate-200/80 bg-white shadow-[0_10px_30px_rgba(11,35,69,0.06)]'}>
       <div className={isHome ? 'relative mx-auto w-full max-w-[995px] px-5 min-[900px]:px-[62px]' : 'container relative'}>
         <TopBar compact={isHome} />
-        <nav className={isHome ? 'flex min-h-[88px] items-center justify-between gap-4 py-1 min-[900px]:min-h-[87px] min-[900px]:items-end min-[900px]:gap-5 min-[900px]:pb-[14px]' : 'flex min-h-[112px] items-center justify-between gap-4 py-1 lg:min-h-[124px] lg:items-end lg:gap-5 lg:pb-3'}>
+        <nav className={isHome ? 'flex min-h-[88px] items-center justify-between gap-2 py-1 sm:gap-4 min-[900px]:min-h-[87px] min-[900px]:items-end min-[900px]:gap-5 min-[900px]:pb-[14px]' : 'flex min-h-[112px] items-center justify-between gap-2 py-1 sm:gap-4 lg:min-h-[124px] lg:items-end lg:gap-5 lg:pb-3'}>
           <Logo compact={isHome} />
 
           <div className={isHome ? 'hidden min-w-0 flex-1 items-center justify-end gap-[13px] pb-[1px] min-[900px]:flex' : 'hidden min-w-0 flex-1 items-center justify-end gap-2 pb-2 lg:flex xl:gap-3'}>

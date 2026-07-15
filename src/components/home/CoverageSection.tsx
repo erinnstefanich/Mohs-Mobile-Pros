@@ -11,7 +11,7 @@ export default function CoverageSection() {
             <p className="eyebrow">Proudly Serving</p>
             <h2 className="mt-3 text-3xl font-extrabold leading-tight text-brand-navy sm:text-4xl">The Pacific Northwest</h2>
             <p className="mt-4 max-w-xl leading-7 text-slate-600">
-              Mohs Mobile Pros supports dermatology and Mohs surgery practices in Vancouver, Portland, and surrounding Pacific Northwest communities based on availability and scheduling needs.
+              Mohs Mobile Pros supports dermatology and Mohs surgery practices in the Portland Metropolitan Area and the Greater Pacific Northwest by Request based on availability and scheduling needs.
             </p>
           </div>
 

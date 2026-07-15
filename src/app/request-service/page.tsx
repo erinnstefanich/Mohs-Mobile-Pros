@@ -21,6 +21,7 @@ export const metadata = {
   }
 }
 
+// FINAL APPROVED REQUEST SERVICE PAGE — DO NOT MODIFY WITHOUT EXPLICIT USER APPROVAL
 export default function RequestServicePage() {
   return (
     <div className="overflow-hidden bg-white">

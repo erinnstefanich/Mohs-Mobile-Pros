@@ -15,7 +15,6 @@ export const services = [
 ]
 
 export const regions = [
-  ['Vancouver, Washington', 'Reliable histology coverage for practices in Clark County and surrounding areas.'],
-  ['Portland, Oregon', 'On-site Mohs histology support for practices in the Portland metropolitan area.'],
-  ['Pacific Northwest', 'Scheduling support for qualifying dermatology practices across the region.']
+  ['Portland Metropolitan Area', 'On-site Mohs histology support for practices throughout Portland and surrounding metropolitan communities.'],
+  ['Greater Pacific Northwest by Request', 'Scheduling support for qualifying dermatology practices across the region.']
 ]
