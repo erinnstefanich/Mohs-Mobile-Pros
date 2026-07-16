@@ -1,83 +1,47 @@
 import { NextResponse } from 'next/server'
-
-type CareersPayload = {
-  fullName?: string
-  email?: string
-  phone?: string
-  cityState?: string
-  currentRole?: string
-  yearsExperience?: string
-  mohsExperience?: string
-  certifications?: string
-  availability?: string
-  willingnessToTravel?: string
-  workArrangements?: string[]
-  message?: string
-}
+import { sendEmail } from '../../../lib/email/sendgrid'
+import { CareersPayload, careersSchema } from '../../../lib/forms/schemas'
+import {
+  isHoneypotSubmission,
+  parseJsonRequest,
+  requestIdentity,
+  runProtectedSubmission,
+  submissionFingerprint
+} from '../../../lib/forms/protection'
 
 const DESTINATION_EMAIL = 'info@mohsmobilepros.com'
-const FROM_EMAIL = 'info@mohsmobilepros.com'
 const SUBJECT = 'New Careers Inquiry — Mohs Mobile Pros'
 
 export async function POST(request: Request) {
-  const data = (await request.json()) as CareersPayload
-  const missing = validate(data)
+  const parsed = await parseJsonRequest(request, careersSchema, 24 * 1024)
+  if (!parsed.ok) return parsed.response
 
-  if (missing.length) {
-    return NextResponse.json({ ok: false, message: 'Missing required fields.', missing }, { status: 400 })
+  if (isHoneypotSubmission(parsed.data)) {
+    return NextResponse.json({ ok: true })
   }
 
-  const apiKey = process.env.SENDGRID_API_KEY?.trim()
-  if (!apiKey) {
-    console.error('Careers email delivery is not configured: SENDGRID_API_KEY is missing.')
-    return NextResponse.json({ ok: false, message: 'Email delivery is not configured.' }, { status: 503 })
-  }
-
-  try {
-    const response = await fetch('https://api.sendgrid.com/v3/mail/send', {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        personalizations: [{ to: [{ email: DESTINATION_EMAIL }] }],
-        from: { email: FROM_EMAIL, name: 'Mohs Mobile Pros Website' },
-        reply_to: { email: data.email, name: data.fullName || 'Careers Applicant' },
+  const identity = requestIdentity(request)
+  const fingerprint = submissionFingerprint('careers', identity, parsed.data)
+  const result = await runProtectedSubmission('careers', identity, fingerprint, async () => {
+    try {
+      await sendEmail({
+        to: DESTINATION_EMAIL,
+        replyTo: parsed.data.email,
+        replyToName: parsed.data.fullName,
         subject: SUBJECT,
-        content: [{ type: 'text/plain', value: formatCareersEmail(data) }],
-        categories: ['careers'],
-        custom_args: { form: 'careers' }
+        body: formatCareersEmail(parsed.data),
+        category: 'careers'
       })
-    })
-
-    if (!response.ok) {
-      console.error('Careers email delivery error:', await response.text())
-      return NextResponse.json({ ok: false, message: 'Email delivery failed.' }, { status: 502 })
+      return { status: 200, body: { ok: true } }
+    } catch {
+      return {
+        status: 502,
+        body: { ok: false, message: 'We could not submit your inquiry. Please try again or email info@mohsmobilepros.com.' }
+      }
     }
+  })
 
-    return NextResponse.json({ ok: true, deliveredTo: DESTINATION_EMAIL })
-  } catch (error) {
-    console.error('Careers email delivery exception:', error)
-    return NextResponse.json({ ok: false, message: 'Email delivery failed.' }, { status: 500 })
-  }
-}
-
-function validate(data: CareersPayload) {
-  const required: Array<keyof CareersPayload> = [
-    'fullName',
-    'email',
-    'phone',
-    'cityState',
-    'currentRole',
-    'yearsExperience',
-    'mohsExperience',
-    'availability',
-    'willingnessToTravel'
-  ]
-  const missing = required.filter((field) => !String(data[field] || '').trim())
-  if (!data.workArrangements?.length) missing.push('workArrangements')
-  return missing
+  return NextResponse.json(result.body, { status: result.status })
 }
 
 function formatCareersEmail(data: CareersPayload) {
@@ -100,7 +64,7 @@ Availability: ${data.availability}
 Willingness to Travel: ${data.willingnessToTravel}
 
 Desired Work Arrangement
-${data.workArrangements?.map((item) => `- ${item}`).join('\n')}
+${data.workArrangements.map((item) => `- ${item}`).join('\n')}
 
 Message / Additional Information
 ${data.message || 'Not provided'}

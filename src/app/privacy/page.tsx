@@ -3,7 +3,8 @@ import { business } from '../../lib/site'
 
 export const metadata = {
   title: 'Privacy Policy',
-  description: 'Privacy Policy for Mohs Mobile Pros describing data collection, use, and security practices.'
+  description: 'Privacy Policy for Mohs Mobile Pros describing data collection, use, and security practices.',
+  alternates: { canonical: '/privacy' }
 }
 
 export default function PrivacyPage() {

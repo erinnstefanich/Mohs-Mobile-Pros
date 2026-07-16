@@ -78,7 +78,8 @@ const workSteps = [
 
 export const metadata = {
   title: 'Services',
-  description: 'Mobile Mohs histology services including cryosectioning, H&E staining, tissue embedding, and on-site laboratory support.'
+  description: 'Mobile Mohs histology services including cryosectioning, H&E staining, tissue embedding, and on-site laboratory support.',
+  alternates: { canonical: '/services' }
 }
 
 // FINAL APPROVED SERVICES PAGE — DO NOT MODIFY WITHOUT EXPLICIT USER APPROVAL

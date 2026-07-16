@@ -24,8 +24,8 @@ export default function HeroSection() {
             Experienced on-site Mohs histology support that integrates seamlessly into your laboratory workflow while delivering precise, prompt, and professional service.
           </p>
           <div className="mt-5 flex flex-col gap-4 sm:flex-row">
-            <Link href="/services" className="btn-secondary min-h-[36px] rounded bg-brand-navy px-6 py-2 text-[11px] text-white hover:border-brand-navy hover:bg-brand-navy hover:text-orange-200">Our Services</Link>
-            <Link href="/request-service" className="btn-primary min-h-[36px] rounded px-6 py-2 text-[11px]">Request Service</Link>
+            <Link href="/services" prefetch={false} className="btn-secondary min-h-[36px] rounded bg-brand-navy px-6 py-2 text-[11px] text-white hover:border-brand-navy hover:bg-brand-navy hover:text-orange-200">Our Services</Link>
+            <Link href="/request-service" prefetch={false} className="btn-primary min-h-[36px] rounded px-6 py-2 text-[11px]">Request Service</Link>
           </div>
         </div>
 

@@ -1,131 +1,59 @@
 import { NextResponse } from 'next/server'
-
-type RequestServicePayload = {
-  practiceName?: string
-  contactName?: string
-  contactEmail?: string
-  contactPhone?: string
-  clinicAddress?: string
-  city?: string
-  state?: string
-  zip?: string
-  requestedDate?: string
-  backupDate?: string
-  mohsSurgeon?: string
-  expectedCases?: string
-  coverageType?: string
-  servicesNeeded?: string[]
-  equipmentAvailable?: string[]
-  otherEquipment?: string
-  arrivalInstructions?: string
-  specialInstructions?: string
-}
+import { sendEmail } from '../../../lib/email/sendgrid'
+import { RequestServicePayload, requestServiceSchema } from '../../../lib/forms/schemas'
+import {
+  isHoneypotSubmission,
+  parseJsonRequest,
+  requestIdentity,
+  runProtectedSubmission,
+  submissionFingerprint
+} from '../../../lib/forms/protection'
 
 const DESTINATION_EMAIL = 'schedule@mohsmobilepros.com'
-const FROM_EMAIL = 'info@mohsmobilepros.com'
 const SUBJECT = 'New Mohs Mobile Pros Service Request'
 
-export async function POST(req: Request) {
-  const data = (await req.json()) as RequestServicePayload
+export async function POST(request: Request) {
+  const parsed = await parseJsonRequest(request, requestServiceSchema, 32 * 1024)
+  if (!parsed.ok) return parsed.response
 
-  const missing = validate(data)
-  if (missing.length) {
-    return NextResponse.json({ ok: false, message: 'Missing required fields.', missing }, { status: 400 })
+  if (isHoneypotSubmission(parsed.data)) {
+    return NextResponse.json({ ok: true })
   }
 
-  const emailBody = formatRequestEmail(data)
-  const confirmationBody = formatConfirmationEmail(data)
-
-  const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY?.trim()
-
-  if (!SENDGRID_API_KEY) {
-    console.error('Request service email delivery is not configured: SENDGRID_API_KEY is missing.')
-    return NextResponse.json({ ok: false, message: 'Email delivery is not configured.' }, { status: 503 })
-  }
-
-  try {
-    const schedulingRes = await sendEmail(SENDGRID_API_KEY, {
-      to: DESTINATION_EMAIL,
-      replyTo: data.contactEmail,
-      replyToName: data.contactName || data.practiceName || 'Service Request',
-      subject: SUBJECT,
-      body: emailBody
-    })
-
-    if (!schedulingRes.ok) {
-      console.error('Request service scheduling email error:', await schedulingRes.text())
-      return NextResponse.json({ ok: false, message: 'Email delivery failed.' }, { status: 502 })
+  const identity = requestIdentity(request)
+  const fingerprint = submissionFingerprint('request-service', identity, parsed.data)
+  const result = await runProtectedSubmission('request-service', identity, fingerprint, async () => {
+    try {
+      await sendEmail({
+        to: DESTINATION_EMAIL,
+        replyTo: parsed.data.contactEmail,
+        replyToName: parsed.data.contactName || parsed.data.practiceName,
+        subject: SUBJECT,
+        body: formatRequestEmail(parsed.data),
+        category: 'request-service'
+      })
+    } catch {
+      return {
+        status: 502,
+        body: { ok: false, message: 'We could not submit your request. Please try again or email schedule@mohsmobilepros.com.' }
+      }
     }
 
-    const confirmationRes = await sendEmail(SENDGRID_API_KEY, {
-      to: data.contactEmail || '',
-      subject: 'Mohs Mobile Pros received your service request',
-      body: confirmationBody
-    })
-
-    if (!confirmationRes.ok) {
-      console.error('Request service confirmation email error:', await confirmationRes.text())
-      return NextResponse.json({ ok: false, message: 'Email delivery failed.' }, { status: 502 })
+    try {
+      await sendEmail({
+        to: parsed.data.contactEmail,
+        subject: 'Mohs Mobile Pros received your service request',
+        body: formatConfirmationEmail(parsed.data),
+        category: 'request-confirmation'
+      })
+    } catch {
+      console.error('[forms:request-confirmation] Primary request delivered; customer confirmation was not delivered.')
     }
 
-    return NextResponse.json({ ok: true, deliveredTo: DESTINATION_EMAIL, confirmationDeliveredTo: data.contactEmail })
-  } catch (err) {
-    console.error('Request service email exception:', err)
-    return NextResponse.json({ ok: false, message: 'Email delivery failed.' }, { status: 500 })
-  }
-}
+    return { status: 200, body: { ok: true } }
+  })
 
-function sendEmail(
-  apiKey: string,
-  message: {
-    to: string
-    subject: string
-    body: string
-    replyTo?: string
-    replyToName?: string
-  }
-) {
-  return fetch('https://api.sendgrid.com/v3/mail/send', {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-          personalizations: [
-            { to: [{ email: message.to }] }
-          ],
-          from: { email: FROM_EMAIL, name: 'Mohs Mobile Pros Website' },
-          reply_to: message.replyTo ? { email: message.replyTo, name: message.replyToName || 'Service Request' } : undefined,
-          subject: message.subject,
-          content: [{ type: 'text/plain', value: message.body }],
-          categories: ['request-service'],
-          custom_args: { form: 'request-service' }
-        })
-    })
-}
-
-function validate(data: RequestServicePayload) {
-  const required: Array<keyof RequestServicePayload> = [
-    'practiceName',
-    'contactName',
-    'contactEmail',
-    'contactPhone',
-    'clinicAddress',
-    'city',
-    'state',
-    'zip',
-    'requestedDate',
-    'mohsSurgeon',
-    'expectedCases',
-    'coverageType'
-  ]
-
-  const missing = required.filter((field) => !String(data[field] || '').trim())
-  if (!data.servicesNeeded?.length) {
-    missing.push('servicesNeeded')
-  }
-  return missing
+  return NextResponse.json(result.body, { status: result.status })
 }
 
 function formatRequestEmail(data: RequestServicePayload) {
@@ -185,6 +113,6 @@ Services Requested: ${formatList(data.servicesNeeded)}
 For scheduling questions, contact ${DESTINATION_EMAIL}.`
 }
 
-function formatList(items?: string[]) {
-  return items?.length ? items.map((item) => `- ${item}`).join('\n') : 'Not provided'
+function formatList(items: readonly string[]) {
+  return items.length ? items.map((item) => `- ${item}`).join('\n') : 'Not provided'
 }

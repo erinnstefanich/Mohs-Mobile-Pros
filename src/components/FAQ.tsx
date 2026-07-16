@@ -1,6 +1,4 @@
-'use client'
-
-import { ReactNode, useState } from 'react'
+import { ReactNode } from 'react'
 
 type FAQItem = {
   q: string
@@ -85,7 +83,6 @@ type FAQProps = {
 
 export default function FAQ({ limit }: FAQProps) {
   const items = typeof limit === 'number' ? approvedFaqs.slice(0, limit) : approvedFaqs
-  const [open, setOpen] = useState(-1)
 
   return (
     <section className="section-pad bg-white">
@@ -96,14 +93,17 @@ export default function FAQ({ limit }: FAQProps) {
           <p className="mt-5 leading-8 text-slate-600">Clear details before service day help every clinic run with less friction.</p>
         </div>
         <div className="divide-y divide-slate-200 rounded-lg border border-slate-200 bg-white shadow-[0_16px_45px_rgba(11,35,69,0.08)]">
-          {items.map((item, index) => (
-            <div key={item.q}>
-              <button type="button" onClick={() => setOpen(open === index ? -1 : index)} className="flex w-full items-center justify-between gap-4 px-5 py-5 text-left font-bold text-brand-navy transition hover:bg-brand-gray sm:px-7">
+          {items.map((item) => (
+            <details key={item.q} name="faq" className="group">
+              <summary className="flex w-full cursor-pointer list-none items-center justify-between gap-4 px-5 py-5 text-left font-bold text-brand-navy transition hover:bg-brand-gray focus:outline-none focus:ring-4 focus:ring-inset focus:ring-brand-orange/20 sm:px-7 [&::-webkit-details-marker]:hidden">
                 <span>{item.q}</span>
-                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-md bg-brand-orange/10 text-brand-orange">{open === index ? '-' : '+'}</span>
-              </button>
-              {open === index && <div className="px-5 pb-6 leading-7 text-slate-600 sm:px-7">{item.a}</div>}
-            </div>
+                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-md bg-brand-orange/10 text-brand-orange" aria-hidden="true">
+                  <span className="group-open:hidden">+</span>
+                  <span className="hidden group-open:inline">−</span>
+                </span>
+              </summary>
+              <div className="px-5 pb-6 leading-7 text-slate-600 sm:px-7">{item.a}</div>
+            </details>
           ))}
         </div>
       </div>

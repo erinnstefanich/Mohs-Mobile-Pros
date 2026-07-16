@@ -11,6 +11,7 @@ module.exports = {
         brand: {
           navy: '#0B2345',
           orange: '#F97316',
+          'orange-aa': '#C2410C',
           light: '#FFFFFF',
           gray: '#F6F8FB',
           ink: '#12243A'

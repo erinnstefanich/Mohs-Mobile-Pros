@@ -4,7 +4,8 @@ import RequestCTA from '../../components/RequestCTA'
 
 export const metadata = {
   title: 'FAQ',
-  description: 'Answers to common questions about Mohs Mobile Pros services, service areas, scheduling, and lab coverage.'
+  description: 'Answers to common questions about Mohs Mobile Pros services, service areas, scheduling, and lab coverage.',
+  alternates: { canonical: '/faq' }
 }
 
 // FINAL APPROVED FAQ PAGE — DO NOT MODIFY WITHOUT EXPLICIT USER APPROVAL

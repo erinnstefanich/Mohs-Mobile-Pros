@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { business } from '../lib/site'
 
 type FormState = {
@@ -22,6 +22,7 @@ type FormState = {
   otherEquipment: string
   arrivalInstructions: string
   specialInstructions: string
+  website: string
 }
 
 const initialForm: FormState = {
@@ -42,7 +43,8 @@ const initialForm: FormState = {
   equipmentAvailable: [],
   otherEquipment: '',
   arrivalInstructions: '',
-  specialInstructions: ''
+  specialInstructions: '',
+  website: ''
 }
 
 const coverageTypes = ['Full-day', 'Half-day', 'As needed', 'Recurring', 'Urgent / short notice']
@@ -64,6 +66,7 @@ export default function ScheduleForm() {
   const [form, setForm] = useState<FormState>(initialForm)
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
   const [error, setError] = useState('')
+  const submitting = useRef(false)
 
   function update(field: keyof FormState, value: string) {
     setForm((prev) => ({ ...prev, [field]: value }))
@@ -79,12 +82,15 @@ export default function ScheduleForm() {
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
+    if (submitting.current) return
+    submitting.current = true
     setStatus('sending')
     setError('')
 
     if (!form.servicesNeeded.length) {
       setStatus('error')
       setError('Please select at least one service requested.')
+      submitting.current = false
       return
     }
 
@@ -95,21 +101,22 @@ export default function ScheduleForm() {
         body: JSON.stringify(form)
       })
 
-      if (!res.ok) {
-        throw new Error('Request failed')
-      }
+      const result = (await res.json().catch(() => null)) as { message?: string } | null
+      if (!res.ok) throw new Error(result?.message || 'Request failed')
 
       setStatus('sent')
       setForm(initialForm)
-    } catch {
+    } catch (submissionError) {
       setStatus('error')
-      setError(`We could not submit the request online. Please email ${business.schedulingEmail} and our scheduling team will help.`)
+      setError(submissionError instanceof Error ? submissionError.message : `We could not submit the request online. Please email ${business.schedulingEmail} and our scheduling team will help.`)
+    } finally {
+      submitting.current = false
     }
   }
 
   if (status === 'sent') {
     return (
-      <section id="request-service-form" className="rounded-lg border border-green-200 bg-white p-8 shadow-[0_18px_55px_rgba(11,35,69,0.09)] sm:p-10">
+      <section id="request-service-form" className="rounded-lg border border-green-200 bg-white p-8 shadow-[0_18px_55px_rgba(11,35,69,0.09)] sm:p-10" aria-live="polite">
         <div className="grid h-16 w-16 place-items-center rounded-full border-2 border-green-200 bg-green-50 text-green-700">
           <svg className="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <path d="m20 6-11 11-5-5" />
@@ -190,7 +197,14 @@ export default function ScheduleForm() {
         </div>
       </FormSection>
 
-      {status === 'error' && <p className="rounded-md border border-red-200 bg-red-50 p-4 text-sm font-bold text-red-700">{error}</p>}
+      <div className="absolute -left-[10000px] h-px w-px overflow-hidden" aria-hidden="true">
+        <label htmlFor="request-website">Website</label>
+        <input id="request-website" name="website" type="text" tabIndex={-1} autoComplete="off" value={form.website} onChange={(e) => update('website', e.target.value)} />
+      </div>
+
+      <div aria-live="assertive" aria-atomic="true">
+        {status === 'error' && <p className="rounded-md border border-red-200 bg-red-50 p-4 text-sm font-bold text-red-700" role="alert">{error}</p>}
+      </div>
 
       <div className="flex flex-col gap-4 border-t border-slate-200 pt-7 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-sm leading-6 text-slate-500">Requests are prepared for delivery to <span className="font-bold text-brand-navy">{business.schedulingEmail}</span>.</p>

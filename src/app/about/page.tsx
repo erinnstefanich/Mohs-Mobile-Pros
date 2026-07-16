@@ -2,7 +2,8 @@ import { BrochureBand, FeatureCard, ImageTriptych, InteriorHero } from '../../co
 
 export const metadata = {
   title: 'About Us',
-  description: 'Learn about Mohs Mobile Pros and our mobile Mohs histology support for dermatology practices.'
+  description: 'Learn about Mohs Mobile Pros and our mobile Mohs histology support for dermatology practices.',
+  alternates: { canonical: '/about' }
 }
 
 // FINAL APPROVED ABOUT PAGE — DO NOT MODIFY WITHOUT EXPLICIT USER APPROVAL

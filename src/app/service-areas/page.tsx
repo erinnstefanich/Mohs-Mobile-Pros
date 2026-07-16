@@ -41,7 +41,8 @@ const regionalReasons = [
 
 export const metadata = {
   title: 'Service Areas',
-  description: 'Mohs Mobile Pros provides mobile Mohs histology support in the Portland Metropolitan Area and the Greater Pacific Northwest by Request.'
+  description: 'Mohs Mobile Pros provides mobile Mohs histology support in the Portland Metropolitan Area and the Greater Pacific Northwest by Request.',
+  alternates: { canonical: '/service-areas' }
 }
 
 // FINAL APPROVED SERVICE AREAS PAGE — DO NOT MODIFY WITHOUT EXPLICIT USER APPROVAL

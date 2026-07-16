@@ -46,10 +46,10 @@ export function InteriorHero({
           <span className="mt-6 block h-1.5 w-24 rounded-full bg-brand-orange" aria-hidden="true" />
           <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-700">{text}</p>
           <div className="mt-9 flex flex-col gap-4 sm:flex-row">
-            <Link href={secondaryHref} className="btn-secondary bg-brand-navy text-white hover:border-brand-navy hover:bg-brand-navy hover:text-white">
+            <Link href={secondaryHref} prefetch={false} className="btn-secondary bg-brand-navy text-white hover:border-brand-navy hover:bg-brand-navy hover:text-white">
               {secondaryLabel}
             </Link>
-            <Link href={primaryHref} className="btn-primary">
+            <Link href={primaryHref} prefetch={false} className="btn-primary">
               {primaryLabel}
             </Link>
           </div>

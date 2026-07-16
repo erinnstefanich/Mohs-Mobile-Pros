@@ -3,7 +3,8 @@ import { business } from '../../lib/site'
 
 export const metadata = {
   title: 'Terms of Use',
-  description: 'Terms of Use for the Mohs Mobile Pros website.'
+  description: 'Terms of Use for the Mohs Mobile Pros website.',
+  alternates: { canonical: '/terms' }
 }
 
 export default function TermsPage() {

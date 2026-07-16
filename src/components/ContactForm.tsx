@@ -1,30 +1,48 @@
 'use client'
 
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { business } from '../lib/site'
 
 export default function ContactForm() {
-  const [status, setStatus] = useState<'idle' | 'sent'>('idle')
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
+  const [error, setError] = useState('')
+  const submitting = useRef(false)
   const [form, setForm] = useState({
     name: '',
     email: '',
     practice: '',
-    message: ''
+    message: '',
+    website: ''
   })
 
   function update(field: string, value: string) {
     setForm((prev) => ({ ...prev, [field]: value }))
   }
 
-  function onSubmit(e: React.FormEvent) {
+  async function onSubmit(e: React.FormEvent) {
     e.preventDefault()
-    const subject = encodeURIComponent(`Website Inquiry - ${form.practice || form.name || 'Mohs Mobile Pros'}`)
-    const body = encodeURIComponent(
-      `Name: ${form.name}\nEmail: ${form.email}\nPractice: ${form.practice}\n\nMessage:\n${form.message}`
-    )
+    if (submitting.current) return
+    submitting.current = true
+    setStatus('sending')
+    setError('')
 
-    window.location.href = `mailto:${business.email}?subject=${subject}&body=${body}`
-    setStatus('sent')
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form)
+      })
+      const result = (await response.json().catch(() => null)) as { message?: string } | null
+      if (!response.ok) throw new Error(result?.message || 'Message delivery failed.')
+
+      setStatus('sent')
+      setForm({ name: '', email: '', practice: '', message: '', website: '' })
+    } catch (submissionError) {
+      setStatus('error')
+      setError(submissionError instanceof Error ? submissionError.message : `We could not send your message. Please email ${business.email}.`)
+    } finally {
+      submitting.current = false
+    }
   }
 
   return (
@@ -52,11 +70,18 @@ export default function ContactForm() {
         <label className="text-sm font-bold text-brand-navy" htmlFor="message">Message</label>
         <textarea id="message" className="form-field min-h-36" name="message" rows={5} value={form.message} onChange={(e) => update('message', e.target.value)} required />
       </div>
+      <div className="absolute -left-[10000px] h-px w-px overflow-hidden" aria-hidden="true">
+        <label htmlFor="contact-website">Website</label>
+        <input id="contact-website" name="website" type="text" tabIndex={-1} autoComplete="off" value={form.website} onChange={(e) => update('website', e.target.value)} />
+      </div>
       <div className="flex flex-col gap-4 pt-1 sm:flex-row sm:items-center">
-        <button type="submit" className="btn-primary">Send Message</button>
+        <button type="submit" className="btn-primary" disabled={status === 'sending'}>{status === 'sending' ? 'Sending...' : 'Send Message'}</button>
         <p className="text-sm text-slate-500">Prefer email? {business.email}</p>
       </div>
-      {status === 'sent' && <p className="rounded-md bg-green-50 p-4 text-sm font-semibold text-green-700">Your email client has been opened with the message prepared for {business.email}.</p>}
+      <div aria-live="polite" aria-atomic="true">
+        {status === 'sent' && <p className="rounded-md bg-green-50 p-4 text-sm font-semibold text-green-700">Your message has been sent to {business.email}.</p>}
+        {status === 'error' && <p className="rounded-md border border-red-200 bg-red-50 p-4 text-sm font-bold text-red-700" role="alert">{error}</p>}
+      </div>
     </form>
   )
 }

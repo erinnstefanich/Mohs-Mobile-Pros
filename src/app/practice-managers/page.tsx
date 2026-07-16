@@ -11,7 +11,8 @@ const managerChecklist = [
 
 export const metadata = {
   title: 'Practice Managers',
-  description: 'Scheduling and coverage information for dermatology practice managers coordinating Mohs histology support.'
+  description: 'Scheduling and coverage information for dermatology practice managers coordinating Mohs histology support.',
+  alternates: { canonical: '/practice-managers' }
 }
 
 // FINAL APPROVED PRACTICE MANAGERS PAGE — DO NOT MODIFY WITHOUT EXPLICIT USER APPROVAL

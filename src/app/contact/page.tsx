@@ -4,7 +4,8 @@ import { business } from '../../lib/site'
 
 export const metadata = {
   title: 'Contact',
-  description: 'Contact Mohs Mobile Pros for mobile Mohs histology support and on-site laboratory support.'
+  description: 'Contact Mohs Mobile Pros for mobile Mohs histology support and on-site laboratory support.',
+  alternates: { canonical: '/contact' }
 }
 
 // FINAL APPROVED CONTACT PAGE — DO NOT MODIFY WITHOUT EXPLICIT USER APPROVAL

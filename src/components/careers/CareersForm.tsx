@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { business } from '../../lib/site'
 import { workArrangements } from './careersData'
 
@@ -17,6 +17,7 @@ type CareersFormState = {
   willingnessToTravel: string
   workArrangements: string[]
   message: string
+  website: string
 }
 
 const initialForm: CareersFormState = {
@@ -31,13 +32,15 @@ const initialForm: CareersFormState = {
   availability: '',
   willingnessToTravel: '',
   workArrangements: [],
-  message: ''
+  message: '',
+  website: ''
 }
 
 export default function CareersForm() {
   const [form, setForm] = useState<CareersFormState>(initialForm)
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
   const [error, setError] = useState('')
+  const submitting = useRef(false)
 
   function update(field: keyof CareersFormState, value: string) {
     setForm((current) => ({ ...current, [field]: value }))
@@ -54,11 +57,14 @@ export default function CareersForm() {
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
+    if (submitting.current) return
+    submitting.current = true
     setError('')
 
     if (!form.workArrangements.length) {
       setStatus('error')
       setError('Please select at least one desired work arrangement.')
+      submitting.current = false
       return
     }
 
@@ -71,15 +77,16 @@ export default function CareersForm() {
         body: JSON.stringify(form)
       })
 
-      if (!response.ok) {
-        throw new Error('Careers inquiry delivery failed')
-      }
+      const result = (await response.json().catch(() => null)) as { message?: string } | null
+      if (!response.ok) throw new Error(result?.message || 'Careers inquiry delivery failed')
 
       setStatus('sent')
       setForm(initialForm)
-    } catch {
+    } catch (submissionError) {
       setStatus('error')
-      setError(`We could not submit your inquiry online. Please email your résumé and information to ${business.email}.`)
+      setError(submissionError instanceof Error ? submissionError.message : `We could not submit your inquiry online. Please email your résumé and information to ${business.email}.`)
+    } finally {
+      submitting.current = false
     }
   }
 
@@ -149,7 +156,14 @@ export default function CareersForm() {
         </div>
       </FormSection>
 
-      {status === 'error' && <p className="rounded-md border border-red-200 bg-red-50 p-4 text-sm font-bold text-red-700" role="alert">{error}</p>}
+      <div className="absolute -left-[10000px] h-px w-px overflow-hidden" aria-hidden="true">
+        <label htmlFor="careers-website">Website</label>
+        <input id="careers-website" name="website" type="text" tabIndex={-1} autoComplete="off" value={form.website} onChange={(event) => update('website', event.target.value)} />
+      </div>
+
+      <div aria-live="assertive" aria-atomic="true">
+        {status === 'error' && <p className="rounded-md border border-red-200 bg-red-50 p-4 text-sm font-bold text-red-700" role="alert">{error}</p>}
+      </div>
 
       <div className="flex flex-col gap-4 border-t border-slate-200 pt-7 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-sm leading-6 text-slate-500">Careers inquiries are delivered to <span className="font-bold text-brand-navy">{business.email}</span>.</p>

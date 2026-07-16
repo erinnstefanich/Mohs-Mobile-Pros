@@ -4,7 +4,8 @@ import RequestCTA from '../../components/RequestCTA'
 
 export const metadata = {
   title: 'Resources',
-  description: 'Planning resources for practices scheduling mobile Mohs histology support and clinic-day laboratory support.'
+  description: 'Planning resources for practices scheduling mobile Mohs histology support and clinic-day laboratory support.',
+  alternates: { canonical: '/resources' }
 }
 
 export default function ResourcesPage() {

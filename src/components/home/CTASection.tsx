@@ -19,8 +19,8 @@ export default function CTASection({ home = false }: CTASectionProps) {
             </p>
           </div>
           <div className="grid gap-2.5">
-            <Link href="/request-service" className="btn-primary min-h-[31px] rounded px-4 py-2 text-[10px]">Request Service</Link>
-            <Link href="/contact" className="inline-flex min-h-[31px] items-center justify-center rounded border border-white/45 px-4 py-2 text-[10px] font-black uppercase tracking-[0.08em] text-white transition hover:bg-white hover:text-brand-navy">
+            <Link href="/request-service" prefetch={false} className="btn-primary min-h-[31px] rounded px-4 py-2 text-[10px]">Request Service</Link>
+            <Link href="/contact" prefetch={false} className="inline-flex min-h-[31px] items-center justify-center rounded border border-white/45 px-4 py-2 text-[10px] font-black uppercase tracking-[0.08em] text-white transition hover:bg-white hover:text-brand-navy">
               Contact Us
             </Link>
           </div>
@@ -47,7 +47,7 @@ export default function CTASection({ home = false }: CTASectionProps) {
             <p className="mt-1 text-sm leading-6 text-white/80">Contact us today to discuss your practice&apos;s needs.</p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row">
-            <Link href="/request-service" className="btn-primary min-h-10 px-6 py-2 text-xs">Request Service</Link>
+            <Link href="/request-service" prefetch={false} className="btn-primary min-h-10 px-6 py-2 text-xs">Request Service</Link>
             <a href={`mailto:${business.email}`} className="inline-flex min-h-10 items-center justify-center gap-2 rounded-md border border-white/35 px-6 py-2 text-xs font-bold uppercase tracking-[0.08em] text-white transition hover:bg-white hover:text-brand-navy">
               <BrochureIcon name="email" size="compact" />
               Email Us
