@@ -10,11 +10,11 @@ export default function CTASection({ home = false }: CTASectionProps) {
   if (home) {
     return (
       <section className="relative z-10 border-b-2 border-brand-orange bg-brand-navy py-[14px] text-white">
-        <div className="mx-auto grid w-full max-w-[995px] gap-5 px-5 min-[900px]:grid-cols-[1fr_155px] min-[900px]:items-center min-[900px]:px-[62px]">
+        <div className="mx-auto grid w-full max-w-7xl gap-5 px-5 sm:px-6 lg:px-8 min-[900px]:grid-cols-[1fr_155px] min-[900px]:items-center xl:grid-cols-[1fr_190px]">
           <div>
             <p className="text-[11px] font-black uppercase tracking-[0.08em] text-brand-orange">Schedule Coverage</p>
-            <h2 className="mt-1 text-[24px] font-black leading-tight">Ready to Schedule Mohs Histology Coverage?</h2>
-            <p className="mt-1 max-w-[590px] text-[12px] font-medium leading-5 text-white/88">
+            <h2 className="mt-1 text-[24px] font-black leading-tight xl:text-[32px]">Ready to Schedule Mohs Histology Coverage?</h2>
+            <p className="mt-1 max-w-[590px] text-[12px] font-medium leading-5 text-white/88 xl:max-w-3xl xl:text-base xl:leading-7">
               Whether you need complete laboratory setup, surgery-day coverage, workflow integration, equipment support, or experienced Mohs technicians, Mohs Mobile Pros is ready to support your practice.
             </p>
           </div>
