@@ -27,19 +27,19 @@ export default function NavBar() {
 
   return (
     <header className={isHome ? 'relative z-40 border-b border-slate-100 bg-white shadow-[0_8px_24px_rgba(11,35,69,0.05)]' : 'sticky top-0 z-40 border-b border-slate-200/80 bg-white shadow-[0_10px_30px_rgba(11,35,69,0.06)]'}>
-      <div className={isHome ? 'relative mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8' : 'relative mx-auto w-full max-w-[1440px] px-5 sm:px-6 lg:px-8'}>
+      <div className={isHome ? 'relative mx-auto w-full max-w-[995px] px-5 min-[900px]:px-[62px]' : 'container relative'}>
         <TopBar compact={isHome} />
-        <nav className={isHome ? 'flex min-h-[88px] flex-nowrap items-center justify-between gap-2 py-1 sm:gap-4 min-[900px]:min-h-[87px] min-[900px]:items-end min-[900px]:gap-5 min-[900px]:pb-[14px] xl:min-h-[108px] xl:pb-4' : 'flex min-h-[112px] flex-nowrap items-center justify-between gap-2 py-1 sm:gap-4 lg:min-h-[124px] lg:items-end lg:gap-5 lg:pb-3'}>
+        <nav className={isHome ? 'flex min-h-[88px] items-center justify-between gap-2 py-1 sm:gap-4 min-[900px]:min-h-[87px] min-[900px]:items-end min-[900px]:gap-5 min-[900px]:pb-[14px]' : 'flex min-h-[112px] items-center justify-between gap-2 py-1 sm:gap-4 lg:min-h-[124px] lg:items-end lg:gap-5 lg:pb-3'}>
           <Logo compact={isHome} />
 
-          <div className={isHome ? 'hidden min-w-0 flex-1 flex-nowrap items-center justify-end gap-[13px] pb-[1px] min-[900px]:flex xl:gap-5' : 'hidden min-w-0 flex-1 flex-nowrap items-center justify-end gap-2 pb-2 lg:flex 2xl:gap-3'}>
+          <div className={isHome ? 'hidden min-w-0 flex-1 items-center justify-end gap-[13px] pb-[1px] min-[900px]:flex' : 'hidden min-w-0 flex-1 items-center justify-end gap-2 pb-2 lg:flex xl:gap-3'}>
             {headerLinks.map((link) => (
-              <Link key={link.href} href={link.href} prefetch={false} aria-current={isActive(link.href) ? 'page' : undefined} className={isHome ? 'group relative whitespace-nowrap py-2 text-[11px] font-extrabold text-brand-navy transition duration-200 hover:text-brand-orange xl:text-[13px]' : 'group relative whitespace-nowrap py-2 text-xs font-extrabold text-brand-navy transition duration-200 hover:text-brand-orange 2xl:text-sm'}>
+              <Link key={link.href} href={link.href} prefetch={false} aria-current={isActive(link.href) ? 'page' : undefined} className={isHome ? 'group relative whitespace-nowrap py-2 text-[11px] font-extrabold text-brand-navy transition duration-200 hover:text-brand-orange' : 'group relative py-2 text-xs font-extrabold text-brand-navy transition duration-200 hover:text-brand-orange xl:text-sm'}>
                 {link.label}
                 <span className="absolute inset-x-0 -bottom-0.5 h-0.5 origin-left scale-x-0 rounded-full bg-brand-orange transition-transform duration-300 ease-out group-hover:scale-x-100" aria-hidden="true" />
               </Link>
             ))}
-            <Link href="/request-service" prefetch={false} aria-current={pathname === '/request-service' ? 'page' : undefined} className={isHome ? 'btn-primary min-h-[36px] min-w-[103px] whitespace-nowrap rounded px-3 py-2 text-[10px] xl:min-h-11 xl:px-5 xl:text-xs' : 'btn-primary min-h-10 whitespace-nowrap px-4 py-2 text-xs 2xl:px-5'}>Request Service</Link>
+            <Link href="/request-service" prefetch={false} aria-current={pathname === '/request-service' ? 'page' : undefined} className={isHome ? 'btn-primary min-h-[36px] min-w-[103px] whitespace-nowrap rounded px-3 py-2 text-[10px]' : 'btn-primary min-h-10 px-4 py-2 text-xs xl:px-5'}>Request Service</Link>
           </div>
 
           <div className={isHome ? 'min-[900px]:hidden' : 'lg:hidden'}>

@@ -13,7 +13,7 @@ export const serviceOptions = [
   'Laboratory Workflow Support'
 ] as const
 
-export const equipmentOptions = ['Cryostat', 'Staining setup', 'Microscope', 'Embedding station', 'Other'] as const
+export const equipmentOptions = ['Cryostat', 'Staining setup', 'Microscope', 'Other'] as const
 
 export const travelOptions = ['Yes', 'No', 'Open to discussion'] as const
 

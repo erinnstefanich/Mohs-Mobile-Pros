@@ -60,7 +60,7 @@ const servicesNeeded = [
   'Laboratory Workflow Support'
 ]
 
-const equipmentAvailable = ['Cryostat', 'Staining setup', 'Microscope', 'Embedding station', 'Other']
+const equipmentAvailable = ['Cryostat', 'Staining setup', 'Microscope', 'Other']
 
 export default function ScheduleForm() {
   const [form, setForm] = useState<FormState>(initialForm)
