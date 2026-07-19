@@ -9,7 +9,7 @@ type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 export default function Button({ variant = 'primary', className = '', children, asLink = false, ...props }: ButtonProps) {
   const base = 'inline-flex items-center justify-center px-5 py-2 rounded-md font-semibold focus:outline-none focus:ring-2 focus:ring-offset-2'
   const variants: Record<string, string> = {
-    primary: 'bg-brand-orange text-white hover:bg-orange-600',
+    primary: 'bg-brand-orange text-brand-navy hover:bg-brand-orange',
     secondary: 'bg-transparent border border-brand-navy text-brand-navy hover:bg-brand-navy/5',
     ghost: 'text-brand-navy'
   }

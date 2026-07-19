@@ -23,7 +23,7 @@ export default function ServicesOverview() {
           </div>
 
           <div className="rounded-lg bg-brand-navy p-6 text-white shadow-2xl shadow-slate-900/15 sm:p-8">
-            <p className="text-sm font-bold uppercase tracking-[0.18em] text-orange-200">Service checklist</p>
+            <p className="text-sm font-bold uppercase tracking-[0.18em] text-brand-orange">Service checklist</p>
             <ul className="mt-6 grid gap-4">
               {checklist.map((item) => (
                 <li key={item} className="flex gap-3 rounded-md border border-white/10 bg-white/10 p-4">

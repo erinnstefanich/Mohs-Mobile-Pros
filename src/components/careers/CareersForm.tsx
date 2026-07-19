@@ -150,7 +150,7 @@ export default function CareersForm() {
       </FormSection>
 
       <FormSection title="Résumé and Additional Information">
-        <p className="rounded-md border border-brand-orange/25 bg-orange-50/60 p-4 text-sm font-semibold leading-6 text-slate-700">After submitting this form, you may email your résumé to <a href={`mailto:${business.email}`} className="font-black text-brand-navy transition hover:text-brand-orange">{business.email}</a>.</p>
+        <p className="rounded-md border border-brand-orange/25 bg-brand-orange/10 p-4 text-sm font-semibold leading-6 text-slate-700">After submitting this form, you may email your résumé to <a href={`mailto:${business.email}`} className="font-black text-brand-navy transition hover:text-brand-orange">{business.email}</a>.</p>
         <div className="mt-6">
           <TextArea label="Message / Additional Information" id="message" value={form.message} onChange={(value) => update('message', value)} placeholder="Tell us about your laboratory background, professional goals, or anything else you would like us to know." />
         </div>

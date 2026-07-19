@@ -113,7 +113,7 @@ export default function ServiceAreasPage() {
             <span className="grid h-14 w-14 place-items-center rounded-full border-2 border-brand-orange bg-white text-brand-navy shadow-[0_12px_28px_rgba(0,0,0,0.18)]">
               <BrochureIcon name="regional-support" size="lg" />
             </span>
-            <p className="eyebrow text-orange-200">Regional Review</p>
+            <p className="eyebrow text-brand-orange">Regional Review</p>
             <h3 className="mt-3 text-2xl font-black leading-tight">Tell us where and when support is needed</h3>
             <p className="mt-4 leading-7 text-white/78">
               Include your clinic address, requested date, case volume, services needed, and equipment details so our team can determine availability.

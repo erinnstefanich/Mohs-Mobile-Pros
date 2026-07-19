@@ -4,8 +4,7 @@
 
 :root {
   --color-navy: #0B2345;
-  --color-orange: #F97316;
-  --color-orange-aa: #C2410C;
+  --color-orange: #D95F6E;
   --color-ink: #12243A;
   --color-soft: #F6F8FB;
 }
@@ -31,7 +30,7 @@ body {
 }
 
 ::selection {
-  background: rgba(249, 115, 22, 0.24);
+  background: rgba(217, 95, 110, 0.24);
 }
 
 @layer components {
@@ -40,11 +39,11 @@ body {
   }
 
   .eyebrow {
-    @apply text-xs font-extrabold uppercase tracking-[0.24em] text-brand-orange-aa;
+    @apply text-xs font-extrabold uppercase tracking-[0.24em] text-brand-orange;
   }
 
   .btn-primary {
-    @apply inline-flex min-h-12 items-center justify-center rounded-md bg-brand-orange-aa px-7 py-3 text-sm font-extrabold uppercase tracking-[0.08em] text-white shadow-lg shadow-orange-900/10 transition duration-300 ease-out hover:-translate-y-[3px] hover:bg-orange-800 hover:shadow-xl hover:shadow-orange-900/20 focus:outline-none focus:ring-4 focus:ring-brand-orange-aa/25;
+    @apply inline-flex min-h-12 items-center justify-center rounded-md bg-brand-orange px-7 py-3 text-sm font-extrabold uppercase tracking-[0.08em] text-brand-navy shadow-lg shadow-brand-orange/10 transition duration-300 ease-out hover:-translate-y-[3px] hover:bg-brand-orange hover:shadow-xl hover:shadow-brand-orange/20 focus:outline-none focus:ring-4 focus:ring-brand-orange/25;
   }
 
   .btn-secondary {

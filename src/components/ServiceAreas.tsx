@@ -16,7 +16,7 @@ export default function ServiceAreas() {
 
         <div className="rounded-lg bg-brand-navy p-5 shadow-2xl shadow-slate-900/15 sm:p-6">
           <div className="mb-5 rounded-md border border-white/10 bg-white/10 p-4 text-white">
-            <p className="text-sm font-bold uppercase tracking-[0.18em] text-orange-200">Regional support</p>
+            <p className="text-sm font-bold uppercase tracking-[0.18em] text-brand-orange">Regional support</p>
             <p className="mt-2 text-2xl font-bold">Built for mobile Mohs lab coverage</p>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">

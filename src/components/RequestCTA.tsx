@@ -10,7 +10,7 @@ export default function RequestCTA() {
           <div className="absolute -bottom-20 left-10 h-40 w-40 rounded-full bg-brand-orange/20" />
           <div className="relative grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
-              <p className="eyebrow text-orange-200">Schedule service</p>
+              <p className="eyebrow text-brand-orange">Schedule service</p>
               <h2 className="mt-3 text-4xl font-bold sm:text-5xl">Ready to Schedule Service?</h2>
               <p className="mt-4 max-w-3xl text-lg leading-8 text-white/80">Request one-time, urgent, or recurring mobile histology support. Our scheduling team will respond with next steps.</p>
             </div>

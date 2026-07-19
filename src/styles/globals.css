@@ -1,7 +1,7 @@
 /* Legacy stylesheet kept for compatibility with older imports. The active app styles live in src/app/globals.css. */
 :root {
   --color-navy: #0B2345;
-  --color-orange: #F97316;
+  --color-orange: #D95F6E;
   --color-white: #FFFFFF;
   --color-light-gray: #F6F8FB;
 }

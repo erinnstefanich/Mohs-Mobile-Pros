@@ -13,7 +13,7 @@ export default function MedicalVisual() {
       />
       <div className="absolute inset-0 bg-gradient-to-tr from-brand-navy/70 via-brand-navy/10 to-transparent" />
       <div className="absolute bottom-5 left-5 right-5 rounded-lg border border-white/15 bg-brand-navy/85 p-5 text-white shadow-xl backdrop-blur">
-        <p className="text-xs font-bold uppercase tracking-[0.18em] text-orange-200">Mohs-ready lab support</p>
+        <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand-orange">Mohs-ready lab support</p>
         <p className="mt-2 text-2xl font-bold">Histology coverage that keeps the day moving</p>
       </div>
     </div>

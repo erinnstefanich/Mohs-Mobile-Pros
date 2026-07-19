@@ -188,7 +188,7 @@ export default function ServicesPage() {
       <BrochureBand tone="navy">
         <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
           <div>
-            <p className="eyebrow text-orange-200">Schedule coverage</p>
+            <p className="eyebrow text-brand-orange">Schedule coverage</p>
             <h2 className="mt-3 text-4xl font-black leading-tight text-white sm:text-5xl">Ready to Schedule Mohs Histology Coverage?</h2>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-white/82">Whether you need complete laboratory setup, surgery-day coverage, workflow integration, equipment support, or experienced Mohs technicians, Mohs Mobile Pros is ready to support your practice.</p>
           </div>
