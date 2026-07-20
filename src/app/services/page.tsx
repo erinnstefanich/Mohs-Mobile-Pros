@@ -150,7 +150,7 @@ export default function ServicesPage() {
             {choiceCards.map((card) => (
               <article key={card.title} className="premium-card group flex min-h-[300px] flex-col">
                 <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full border-2 border-brand-orange bg-white text-brand-navy shadow-[0_12px_28px_rgba(11,35,69,0.12)] transition duration-300 ease-out group-hover:scale-[1.03]">
-                  <BrochureIcon name={card.icon} size="lg" />
+                  <BrochureIcon name={card.icon} size="lg" className={card.icon === 'quality-consistency' ? 'translate-x-[4px]' : ''} />
                 </span>
                 <h3 className="mt-6 text-xl font-black leading-tight text-brand-navy">{card.title}</h3>
                 <p className="mt-4 leading-7 text-slate-600">{card.text}</p>
@@ -185,21 +185,6 @@ export default function ServicesPage() {
         </div>
       </BrochureBand>
 
-      <BrochureBand tone="navy">
-        <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
-          <div>
-            <p className="eyebrow text-brand-orange">Schedule coverage</p>
-            <h2 className="mt-3 text-4xl font-black leading-tight text-white sm:text-5xl">Ready to Schedule Mohs Histology Coverage?</h2>
-            <p className="mt-5 max-w-3xl text-lg leading-8 text-white/82">Whether you need complete laboratory setup, surgery-day coverage, workflow integration, equipment support, or experienced Mohs technicians, Mohs Mobile Pros is ready to support your practice.</p>
-          </div>
-          <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
-            <Link href="/request-service" className="btn-primary">Request Service</Link>
-            <Link href="/contact" className="inline-flex min-h-12 items-center justify-center rounded-md border border-white/25 px-6 py-3 text-sm font-bold uppercase tracking-[0.08em] text-white transition duration-300 ease-out hover:-translate-y-[3px] hover:bg-white hover:text-brand-navy">
-              Contact Us
-            </Link>
-          </div>
-        </div>
-      </BrochureBand>
     </div>
   )
 }

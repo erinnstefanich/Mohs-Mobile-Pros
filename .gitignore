@@ -16,3 +16,5 @@ yarn-error.log*
 # Local environment credentials
 .env*
 !.env.example
+
+.vercel

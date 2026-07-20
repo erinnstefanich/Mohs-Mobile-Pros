@@ -68,7 +68,7 @@ export default function CareersPage() {
           <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
             {careerOpportunities.map((opportunity) => (
               <article key={opportunity.title} className="premium-card group flex min-h-[330px] flex-col">
-                <span className="grid h-16 w-16 shrink-0 place-items-center rounded-full border-2 border-brand-orange bg-white shadow-[0_12px_28px_rgba(11,35,69,0.12)]"><BrochureIcon name={opportunity.icon} size="lg" /></span>
+                <span className={`grid h-16 w-16 shrink-0 place-items-center rounded-full border-2 border-brand-orange bg-white shadow-[0_12px_28px_rgba(11,35,69,0.12)]${opportunity.title === 'Entry-Level Mohs Technician Trainee' ? ' self-center' : ''}`}><BrochureIcon name={opportunity.icon} size="lg" /></span>
                 <h3 className="mt-6 text-xl font-black leading-tight text-brand-navy">{opportunity.title}</h3>
                 <p className="mt-4 flex-1 leading-7 text-slate-600">{opportunity.text}</p>
                 <Link href="/careers#careers-inquiry-form" className="btn-primary mt-7 self-start">{opportunity.button}</Link>

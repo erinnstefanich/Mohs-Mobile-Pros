@@ -153,7 +153,7 @@ export default function ServiceAreasPage() {
           <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-5">
             {regionalReasons.map((reason) => (
               <article key={reason.title} className="premium-card group flex min-h-[230px] flex-col">
-                <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full border-2 border-brand-orange bg-white text-brand-navy shadow-[0_12px_28px_rgba(11,35,69,0.12)] transition duration-300 ease-out group-hover:scale-[1.03]">
+                <span className={`grid h-14 w-14 shrink-0 place-items-center rounded-full border-2 border-brand-orange bg-white text-brand-navy shadow-[0_12px_28px_rgba(11,35,69,0.12)] transition duration-300 ease-out group-hover:scale-[1.03]${reason.icon === 'quality-consistency' ? ' self-center' : ''}`}>
                   <BrochureIcon name={reason.icon} size="lg" />
                 </span>
                 <h3 className="mt-6 text-lg font-black leading-tight text-brand-navy">{reason.title}</h3>
