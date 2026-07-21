@@ -26,6 +26,9 @@ export const metadata = {
     index: true,
     follow: true
   },
+  verification: {
+    google: 'oCI0TX2rhTTrwV8kj7IUU1CGrQGjaVqFCwZV4YvQHic'
+  },
   icons: {
     icon: '/favicon.ico',
     apple: '/apple-icon.png'
