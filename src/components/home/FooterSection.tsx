@@ -73,7 +73,3 @@ export default function FooterSection({ home = false }: FooterSectionProps) {
             </svg>
           </a>
         </div>
-      </div>
-    </div>
-  )
-}
