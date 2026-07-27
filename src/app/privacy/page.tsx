@@ -1,38 +1,31 @@
-import PageHero from '../../components/PageHero'
-import { business } from '../../lib/site'
-
 export const metadata = {
-  title: 'Privacy Policy',
-  description: 'Privacy Policy for Mohs Mobile Pros describing data collection, use, and security practices.',
-  alternates: { canonical: '/privacy' }
+  title: 'Privacy Policy — Mohs Mobile Pros',
+  description: 'Privacy Policy for Mohs Mobile Pros describing data collection, use, and security practices.'
 }
 
-export default function PrivacyPage() {
+import Section from '../../components/Section'
+
+export default function Privacy(){
   return (
-    <>
-      <PageHero eyebrow="Privacy" title="Privacy Policy" text="How Mohs Mobile Pros collects, uses, and protects information provided through this website." />
-      <section className="section-pad bg-white">
-        <div className="container max-w-4xl">
-          <div className="space-y-8 leading-8 text-slate-600">
-            <section>
-              <h2 className="text-2xl font-bold text-brand-navy">Information We Collect</h2>
-              <p className="mt-3">We collect contact information you provide when requesting services, including name, email, phone, practice name, requested service details, and scheduling notes.</p>
-            </section>
-            <section>
-              <h2 className="text-2xl font-bold text-brand-navy">Use Of Information</h2>
-              <p className="mt-3">Information is used to respond to inquiries, coordinate scheduling, prepare for service, and improve communication with practice teams. We do not sell personal information.</p>
-            </section>
-            <section>
-              <h2 className="text-2xl font-bold text-brand-navy">Security</h2>
-              <p className="mt-3">We use reasonable administrative and technical safeguards. If protected health information is involved, appropriate agreements and secure workflows should be confirmed before service.</p>
-            </section>
-            <section>
-              <h2 className="text-2xl font-bold text-brand-navy">Contact</h2>
-              <p className="mt-3">Questions may be directed to <a href={`mailto:${business.email}`} className="font-bold text-brand-orange">{business.email}</a>.</p>
-            </section>
-          </div>
+    <main>
+      <Section>
+        <div className="prose max-w-3xl">
+          <h1 className="text-3xl font-semibold text-brand-navy mb-4">Privacy Policy</h1>
+          <p>This Privacy Policy explains how Mohs Mobile Pros collects, uses, and protects information obtained through this website and in the course of providing services.</p>
+
+          <h2 className="mt-6">Information we collect</h2>
+          <p>We collect contact information you provide when you request services (name, email, phone, facility), and limited technical data from website interactions (cookies, analytics) used to improve site performance.</p>
+
+          <h2 className="mt-6">Use of information</h2>
+          <p>Contact information is used to respond to inquiries, schedule services, and coordinate operational logistics. We do not sell or share personal data with third parties for marketing purposes.</p>
+
+          <h2 className="mt-6">Security</h2>
+          <p>We implement administrative and technical safeguards aimed at protecting information. If handling protected health information (PHI) is required, we will discuss appropriate agreements and secure workflows with clients.</p>
+
+          <h2 className="mt-6">Contact</h2>
+          <p>Questions about this policy may be directed to <a href="mailto:info@mohsmobilepros.com" className="underline">info@mohsmobilepros.com</a>.</p>
         </div>
-      </section>
-    </>
+      </Section>
+    </main>
   )
 }

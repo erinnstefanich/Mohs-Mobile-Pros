@@ -1,50 +1,41 @@
-import ContactForm from '../../components/ContactForm'
-import { BrochureBand, FeatureCard, InteriorHero } from '../../components/site/InteriorPage'
-import { business } from '../../lib/site'
+import Section from '../../components/Section'
 
 export const metadata = {
-  title: 'Contact',
-  description: 'Contact Mohs Mobile Pros for mobile Mohs histology support and on-site laboratory support.',
-  alternates: { canonical: '/contact' }
+  title: 'Contact — Mohs Mobile Pros',
+  description: 'Contact Mohs Mobile Pros for scheduling, general inquiries, and operational support. Phone and email contact details for our team.'
 }
 
-// FINAL APPROVED CONTACT PAGE — DO NOT MODIFY WITHOUT EXPLICIT USER APPROVAL
-export default function ContactPage() {
+export default function Contact(){
   return (
-    <div className="overflow-hidden bg-white">
-      <InteriorHero
-        eyebrow="Contact Mohs Mobile Pros"
-        title="Talk with us about mobile Mohs histology support"
-        text="Reach out for service questions, practice coverage needs, scheduling details, or general information about on-site Mohs histology support."
-        secondaryLabel="View Services"
-        heroKey="contact"
-      />
+    <main>
+      <Section>
+        <div className="max-w-3xl">
+          <h1 className="text-3xl font-semibold text-brand-navy mb-4">Contact</h1>
+          <p className="text-slate-700 mb-4">We welcome inquiries about scheduling, services, and partnerships. Contact our team using the details below.</p>
 
-      <BrochureBand tone="gray">
-        <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
-          <div className="grid gap-6">
-            <div className="rounded-lg bg-brand-navy p-8 text-white shadow-[0_20px_55px_rgba(11,35,69,0.18)] transition duration-300 ease-out hover:-translate-y-[3px]">
-              <p className="eyebrow">Direct Contact</p>
-              <div className="mt-7 space-y-6">
-                <p>
-                  <span className="block text-xs font-bold uppercase tracking-[0.16em] text-white/55">Phone</span>
-                  <a href={business.phoneHref} className="mt-1 block text-2xl font-extrabold transition hover:text-brand-orange">{business.phone}</a>
-                </p>
-                <p>
-                  <span className="block text-xs font-bold uppercase tracking-[0.16em] text-white/55">Email</span>
-                  <a href={`mailto:${business.email}`} className="mt-1 block text-lg font-extrabold transition hover:text-brand-orange">{business.email}</a>
-                </p>
-                <p>
-                  <span className="block text-xs font-bold uppercase tracking-[0.16em] text-white/55">Scheduling</span>
-                  <a href={`mailto:${business.schedulingEmail}`} className="mt-1 block text-lg font-extrabold transition hover:text-brand-orange">{business.schedulingEmail}</a>
-                </p>
-              </div>
+          <dl className="space-y-3">
+            <div>
+              <dt className="font-semibold">Phone</dt>
+              <dd><a href="tel:3606061030" className="underline">360‑606‑1030</a></dd>
             </div>
-            <FeatureCard title="Pacific Northwest support" text="Service requests are reviewed for the Portland Metropolitan Area and the Greater Pacific Northwest by Request based on availability." icon="map" />
-          </div>
-          <ContactForm />
+
+            <div>
+              <dt className="font-semibold">General email</dt>
+              <dd><a href="mailto:info@mohsmobilepros.com" className="underline">info@mohsmobilepros.com</a></dd>
+            </div>
+
+            <div>
+              <dt className="font-semibold">Scheduling</dt>
+              <dd><a href="mailto:schedule@mohsmobilepros.com" className="underline">schedule@mohsmobilepros.com</a></dd>
+            </div>
+
+            <div>
+              <dt className="font-semibold">Serving</dt>
+              <dd>Washington • Oregon • Idaho</dd>
+            </div>
+          </dl>
         </div>
-      </BrochureBand>
-    </div>
+      </Section>
+    </main>
   )
 }

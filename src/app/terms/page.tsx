@@ -1,38 +1,28 @@
-import PageHero from '../../components/PageHero'
-import { business } from '../../lib/site'
-
 export const metadata = {
-  title: 'Terms of Use',
-  description: 'Terms of Use for the Mohs Mobile Pros website.',
-  alternates: { canonical: '/terms' }
+  title: 'Terms of Use — Mohs Mobile Pros',
+  description: 'Terms of Use for Mohs Mobile Pros website describing permitted site use, disclaimers, and limitations of liability.'
 }
 
-export default function TermsPage() {
+import Section from '../../components/Section'
+
+export default function Terms(){
   return (
-    <>
-      <PageHero eyebrow="Terms" title="Terms of Use" text="Terms for using the Mohs Mobile Pros website and service information." />
-      <section className="section-pad bg-white">
-        <div className="container max-w-4xl">
-          <div className="space-y-8 leading-8 text-slate-600">
-            <section>
-              <h2 className="text-2xl font-bold text-brand-navy">Website Use</h2>
-              <p className="mt-3">By using this website, you agree to use the information for lawful purposes. Website content is provided for general service information.</p>
-            </section>
-            <section>
-              <h2 className="text-2xl font-bold text-brand-navy">Service Information</h2>
-              <p className="mt-3">Services are subject to agreement, availability, scheduling, and practice-specific requirements. Website content does not create a service agreement by itself.</p>
-            </section>
-            <section>
-              <h2 className="text-2xl font-bold text-brand-navy">Limitation Of Liability</h2>
-              <p className="mt-3">To the extent permitted by law, Mohs Mobile Pros disclaims liability for indirect damages arising from use of this website or reliance on its content.</p>
-            </section>
-            <section>
-              <h2 className="text-2xl font-bold text-brand-navy">Contact</h2>
-              <p className="mt-3">Questions may be directed to <a href={`mailto:${business.email}`} className="font-bold text-brand-orange">{business.email}</a>.</p>
-            </section>
-          </div>
+    <main>
+      <Section>
+        <div className="prose max-w-3xl">
+          <h1 className="text-3xl font-semibold text-brand-navy mb-4">Terms of Use</h1>
+          <p>By accessing and using this website you agree to these Terms of Use. The site provides information about Mohs Mobile Pros services and is not a substitute for professional medical advice.</p>
+
+          <h2 className="mt-6">Disclaimer</h2>
+          <p>Services described on this site are provided subject to agreement and scheduling. Mohs Mobile Pros is not responsible for third-party content or links to external sites.</p>
+
+          <h2 className="mt-6">Limitation of liability</h2>
+          <p>To the extent permitted by law, Mohs Mobile Pros disclaims liability for indirect or consequential damages arising from use of this site or reliance on its content.</p>
+
+          <h2 className="mt-6">Contact</h2>
+          <p>For questions regarding these terms, please email <a href="mailto:info@mohsmobilepros.com" className="underline">info@mohsmobilepros.com</a>.</p>
         </div>
-      </section>
-    </>
+      </Section>
+    </main>
   )
 }
