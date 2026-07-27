@@ -58,16 +58,14 @@ export default function FooterSection({ home = false }: FooterSectionProps) {
         </div>
 
         <div className={home ? 'md:border-l md:border-white/25 md:pl-6' : 'md:border-l md:border-white/25 md:pl-8'}>
-          <h2 className={home ? 'text-[11px] font-bold uppercase tracking-[0.12em] text-brand-orange xl:text-xs' : 'text-xs font-bold uppercase tracking-[0.18em] text-brand-orange'}>Follow Us</h2>
-          <span aria-hidden="true" className={home ? 'mt-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/70 text-sm font-extrabold text-brand-navy' : 'mt-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/70 text-base font-extrabold text-brand-navy'}>
-            in
-          </span>
-          <div className={home ? 'mt-5 flex gap-4 text-[10px] font-semibold text-white/70' : 'mt-7 flex gap-5 text-xs font-semibold text-white/70'}>
-            <Link href="/privacy" prefetch={false} className={footerLinkClass}>Privacy</Link>
-            <Link href="/terms" prefetch={false} className={footerLinkClass}>Terms</Link>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
+         >
+  href="https://www.linkedin.com/company/mohs-mobile-pros/"
+  target="_blank"
+  rel="noopener noreferrer"
+  className={home
+    ? "mt-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/70 text-sm font-bold text-brand-navy hover:bg-white"
+    : "mt-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/70 text-sm font-bold text-brand-navy hover:bg-white"}
+  aria-label="Follow Mohs Mobile Pros on LinkedIn"
+>
+  in
+</a>
