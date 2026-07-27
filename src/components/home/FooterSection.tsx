@@ -58,14 +58,18 @@ export default function FooterSection({ home = false }: FooterSectionProps) {
         </div>
 
         <div className={home ? 'md:border-l md:border-white/25 md:pl-6' : 'md:border-l md:border-white/25 md:pl-8'}>
-         >
-  href="https://www.linkedin.com/company/mohs-mobile-pros/"
-  target="_blank"
-  rel="noopener noreferrer"
-  className={home
-    ? "mt-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/70 text-sm font-bold text-brand-navy hover:bg-white"
-    : "mt-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/70 text-sm font-bold text-brand-navy hover:bg-white"}
-  aria-label="Follow Mohs Mobile Pros on LinkedIn"
->
-  in
-</a>
+          <h2 className={home ? 'text-[11px] font-bold uppercase tracking-[0.12em] text-brand-orange xl:text-xs' : 'text-xs font-bold uppercase tracking-[0.18em] text-brand-orange'}>Follow Us</h2>
+          <a
+            href="https://www.linkedin.com/company/mohs-mobile-pros/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={home
+              ? 'mt-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/70 text-sm font-bold text-brand-navy hover:bg-white'
+              : 'mt-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/70 text-sm font-bold text-brand-navy hover:bg-white'}
+            aria-label="Follow Mohs Mobile Pros on LinkedIn"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true" className={home ? 'h-4 w-4' : 'h-5 w-5'} fill="currentColor">
+              <path d="M6.94 8.5A1.56 1.56 0 1 0 6.94 5.38a1.56 1.56 0 0 0 0 3.12ZM5.5 9.5h2.88V18H5.5V9.5Zm4.64 0h2.76v1.16h.04c.38-.72 1.32-1.48 2.72-1.48 2.91 0 3.45 1.91 3.45 4.4V18h-2.88v-7.47c0-1.78-.03-4.08-2.48-4.08-2.49 0-2.87 1.94-2.87 3.95V18H10.14V9.5Z" />
+            </svg>
+          </a>
+        </div>
